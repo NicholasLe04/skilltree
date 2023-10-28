@@ -5,7 +5,7 @@ import "./TreeCard.css";
 function TreeCard({ id, title, author, upvotes, downvotes, treeImageURL }) {
     const navigate = useNavigate()
     return (
-        <div className="tree-card-root" onClick={() => {
+        <div className="tree-card-root grow" onClick={() => {
             navigate(`/tree/${id}`)
         }}>
             <div className="tree-card-desc">

@@ -15,7 +15,7 @@ function Root() {
                 <Routes>
                     <Route path="/" exact element={<Landing />} />
                     <Route path="/home" element={<Home />} />
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/profile/:username' element={<Profile />} />
                     {/* <Route path="/create" element={<Create />} /> */}
                     <Route path="/tree/:treeID" element={<Tree />} />
                     <Route path="/login" element={<Login />} />

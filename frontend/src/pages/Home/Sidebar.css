@@ -22,9 +22,13 @@
   
   li {
     margin-bottom: 10px;
+    position: relative;
   }
   
   li:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+  .simg {
+    position: absolute;
   }
