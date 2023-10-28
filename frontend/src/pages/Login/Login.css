@@ -1,4 +1,4 @@
-.container {
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,24 +15,24 @@
     color: #fff;
 }
 
-h1 {
+.login-container h1 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 36px;
     color: #2ed142;
 }
 
-form {
+.login-container form {
     display: flex;
     flex-direction: column;
 }
 
-label {
+.login-container label {
     margin-bottom: 10px;
     font-size: 18px;
 }
 
-input {
+.login-container input {
     padding: 12px;
     border: none;
     border-radius: 5px;
@@ -42,7 +42,7 @@ input {
     background-color: #555;
 }
 
-button {
+.login-container button {
     padding: 10px;
     background-color: #2ed142;
     color: #fff;
@@ -53,22 +53,22 @@ button {
     transition: background-color 0.2s ease-in-out;
 }
 
-button:hover {
+.login-container button:hover {
     background-color: #2ed142;
 }
 
-a {
+.login-container a {
     text-decoration: none;
     color: #2ed142;
     font-size: 18px;
     transition: color 0.2s ease-in-out;
 }
 
-a:hover {
+.login-container a:hover {
     color: #2ed142;
 }
 
-p {
+.login-container p {
     text-align: center;
     margin: 8px;
 }
