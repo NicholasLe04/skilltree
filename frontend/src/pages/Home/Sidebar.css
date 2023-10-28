@@ -1,16 +1,18 @@
 /* Sidebar.css */
 
 .sidebar {
-    width: 15%;
+    width: 14%;
     height: 100%;
-    background-color: #575757;
+    background-color: #eeeeee;
     color: #fff;
     top: 20;
     left: 0;
-    padding: 20px;
+    padding: 30px;
     position: fixed;
     display: flex;
-    border-right: 2px solid black;
+    color: #313131;
+    font-weight: 800;
+    font-size: 22px;
   }
   
   ul {

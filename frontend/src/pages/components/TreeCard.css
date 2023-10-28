@@ -5,7 +5,7 @@
     flex-direction: row;
     padding: 20px;
     border-radius: 15px;
-    border: black 3px solid;
+    background-color: #eeeeee;
     margin: auto;
 }
 
@@ -17,6 +17,7 @@
 
 .tree-card-title {
     font-size: 30px;
+    font-weight: 800;
 }
 
 .tree-card-author {
