@@ -50,16 +50,16 @@ function Profile() {
     return (
         <>
             <Navbar />
-            <div className="profileBody">
-                <div className="profileHero">
-                    <img src={pfpURL} className="profilePfp"></img>
-                    <div className="profileHeader">
-                        <div className="profileName">{name}</div>
-                        <div className="profileDesc">{desc}</div>
+            <div className="profile-body">
+                <div className="profile-hero">
+                    <img src={pfpURL} className="profile-pfp"></img>
+                    <div className="profile-header">
+                        <div className="profile-name">{name}</div>
+                        <div className="profile-desc">{desc}</div>
                     </div>
                 </div>
-                <div className="profileTreeText">Trees</div>
-                <div className="profileTrees">
+                <div className="profile-tree-text">Trees</div>
+                <div className="profile-trees">
                     {treeCards.map((e) => <TreeCard title={e.title} author={e.author} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
                 </div>
             </div >

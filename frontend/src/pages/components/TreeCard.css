@@ -1,4 +1,4 @@
-.treeCardRoot {
+.tree-card-root {
     width: 200px;
     height: 100px;
     display: flex;
@@ -9,34 +9,34 @@
     margin: auto;
 }
 
-.treeCardDesc {
+.tree-card-desc {
     display: flex;
     flex-direction: column;
     width: 50%;
 }
 
-.treeCardTitle {
+.tree-card-title {
     font-size: 30px;
 }
 
-.treeCardAuthor {
+.tree-card-author {
     font-size: 16px;
 }
 
-.treeCardRating {
+.tree-card-rating {
     display: flex;
     flex-direction: row;
     flex: 1;
 }
 
-.treeCardUpvotes {
+.tree-card-upvotes {
     display: flex;
     flex-direction: row;
     flex: 1;
 
 }
 
-.treeCardDownvotes {
+.tree-card-downvotes {
     display: flex;
     flex-direction: row;
     flex: 1;
