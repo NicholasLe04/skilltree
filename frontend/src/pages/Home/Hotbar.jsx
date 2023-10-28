@@ -39,7 +39,7 @@ function Hotbar({category, refz}) {
     
     return (
         <div className="hotbar" ref={refz}>
-            <h4>{category}</h4>
+            <h4 style={{marginLeft: '60px'}}>{category}</h4>
             <div className='treecube'>
                 {treeCard.map((e) => <TreeCard title={e.title} author={e.author} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
             </div>
