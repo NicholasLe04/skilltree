@@ -5,9 +5,10 @@ import Sidebar from './Sidebar';
 
 function Home() {
   
+  const category = ["Trending", "Tech", "Creative", "Sports", "Academic", "Saved"];
   let compArr = [];
-    for(let i=0;i<4;i++){
-        compArr.push(<Hotbar key={i}/>);
+    for(let i=0;i<category.length;i++){
+        compArr.push(<Hotbar key={i}  category={category[i]}/>);
     }
   return (
     <>

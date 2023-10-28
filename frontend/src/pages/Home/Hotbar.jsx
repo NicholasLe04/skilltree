@@ -2,7 +2,7 @@ import React from 'react';
 import './Hotbar.css';
 import Treebox from './Treebox';
 
-function Navbar() {
+function Hotbar({category}) {
 
     let compArr = [];
     for(let i=0;i<4;i++){
@@ -11,7 +11,7 @@ function Navbar() {
     
     return (
         <div className="hotbar">
-            <h4>Trending</h4>
+            <h4>{category}</h4>
             <div id='treecube'>
                 {compArr}         
             </div>
@@ -19,4 +19,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default Hotbar;
