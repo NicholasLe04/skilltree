@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import './Create.css';
 import React from 'react';
@@ -19,93 +19,60 @@ const options = {
 
 function Create() {
 
+    // useEffect(() => {
+        
+    // }, [skills]);
+
     const createNode = () => {
-        setState(({ graph: { nodes, edges }, counter }) => {
-            const id = counter + 1;
-            const newNode = { 
-                id, 
-                label: `Node ${id}`, 
+        setSkills([...skills, { 
+                id: counter, 
+                label: 'New Skill', 
                 color: '#c9c9c9', 
                 x: Math.floor(Math.random() * 500)-250, 
                 y: Math.floor(Math.random() * 400)-200, 
                 heightConstraint: 100,
-                physics: false,
+                physics: true,
                 shape: 'circle'
-            };
-            return {
-                graph: {
-                    nodes: [
-                        ...nodes,
-                        newNode
-                    ],
-                    edges: edges
-                },
-                counter: id,
-                events: {
-                    select: ({ nodes }) => {
-                        setSelectedNode([...graph.nodes, newNode].find(node => node.id == nodes));
-                    }
-                }
-            }
-        });
+        }]);
+
+
+        setCounter(counter + 1)
     }
 
     const deleteNode = (node_id) => {
+        setSkills(skills.filter(node => node.id !== node_id));
         setSelectedNode();
-        setState(({ graph: { nodes, edges }, counter }) => {
-            return {
-                graph: {
-                    nodes: nodes.filter(node => node.id != node_id),
-                    edges: edges
-                },
-                counter: counter,
-                events: {
-                    select: ({ nodes }) => {
-                        setSelectedNode([...graph.nodes].find(node => node.id == nodes));
-                    }
-                }
-            }
-        });
     }
 
     const handleCheckboxChange = (node, isChecked) => {
         if (!isChecked) {
-            setState(({ graph: { nodes, edges }, counter, events}) => {
-                return {
-                    graph: {
-                            nodes: nodes,
-                            edges: edges.filter(edge => (edge.from !== selectedNode.id || edge.to !== node.id))
-                    },
-                    counter: counter,
-                    events: events
-                }
-            })
+            setEdges(edges.filter(edge => (edge.from !== selectedNode.id || edge.to !== node.id)))
         }
         else {
-            setState(({ graph: { nodes, edges }, counter, events}) => {
-                return {
-                    graph: {
-                            nodes: nodes,
-                            edges: [...edges, {from: selectedNode.id, to: node.id}]
-                    },
-                    counter: counter,
-                    events: events
-                }
-            })
+            setEdges([...edges, {from: selectedNode.id, to: node.id}]);
         }
 
-        console.log(state.graph.edges)
     };
 
-    const [state, setState] = useState({
-        counter: 0,
-        graph: {
-            nodes: [],
-            edges: []
-        },
-        events: {}
-    })
-    const { graph, events } = state;
+    const handleTitleChange = (e) => {
+        let tempNode = skills.find(node => node.id === selectedNode.id);
+        tempNode.label = e.target.value;
+        setSkills([...skills.filter(node => node.id !== selectedNode.id), tempNode]);
+        setTrigger(!trigger);
+    }
+
+    const [counter, setCounter] = useState(1);
+    const [skills, setSkills] = useState([]);
+    const [edges, setEdges] = useState([]);
+    const [trigger, setTrigger] = useState(true);
+
+    
+    const events = {
+        select: ({ nodes }) => {
+            setSelectedNode(skills.find(node => node.id == nodes));
+        }
+    };
+
 
     const [selectedNode, setSelectedNode] = useState();
 
@@ -115,29 +82,35 @@ function Create() {
             <div className='main-content' style={{display:'flex', flexDirection:'column'}}>
                 <div className='main-content' style={{display:'flex'}}>
                     <div className='content'>
-                        <Graph graph={graph} options={options} events={events}/>
+                            <Graph 
+                                graph={{
+                                    "nodes": skills,
+                                    "edges": edges
+                                }} 
+                                options={options} 
+                                events={events}
+                                trigger={trigger}
+                            />
                         <button style={{height: '50px', width: '50px', borderRadius: '25px'}} onClick={createNode}>+</button>
                     </div>
                     <div className='sidebar-container'>
                         { 
                             selectedNode && 
                             <>
-                                <input type='text' className='skill-title-editor' placeholder={selectedNode.label} onChange={(e) => {
-                                   console.log("ashglkasjglksjgl")
-                                }}/>
+                                <input type='text' className='skill-title-editor' placeholder={selectedNode.label} onChange={(e) => {handleTitleChange(e)}}/>
                                 <h3>Description</h3>
                                 <textarea type='text' className='description-editor' defaultValue={selectedNode.description} />
                                 <h3>Connects to</h3>
                                 <div>
                                     {
-                                        state.graph.nodes.map((node) => {
+                                        skills.map((node) => {
                                             if (node.id != selectedNode.id) {
                                                 return (
                                                     <div key={node.id}>
                                                         <label>
                                                             <input
                                                             type="checkbox"
-                                                            checked={state.graph.edges.some(edge => edge.from === selectedNode.id && edge.to === node.id)}
+                                                            checked={edges.some(edge => edge.from === selectedNode.id && edge.to === node.id)}
                                                             onChange={(e) => handleCheckboxChange(node, e.target.checked)}
                                                             />
                                                             {node.label}
