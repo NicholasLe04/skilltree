@@ -1,21 +1,38 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import Navbar from '../components/navbar';
 import Hotbar from './Hotbar';
 import Sidebar from './Sidebar';
 
 function Home() {
-  
-  const category = ["Trending", "Tech", "Creative", "Sports", "Academic", "Saved"];
-  let compArr = [];
-    for(let i=0;i<category.length;i++){
-        compArr.push(<Hotbar key={i}  category={category[i]}/>);
-    }
+
+  const category = [
+    { category: "Trending",
+      ref: createRef()
+    },
+    { category: "Tech",
+      ref: createRef()
+    },
+    { category: "Creative",
+      ref: createRef()
+    },
+    { category: "Sports",
+      ref: createRef()
+    },
+    { category: "Academic",
+      ref: createRef()
+    },
+    { category: "Saved",
+      ref: createRef()
+    },
+    
+  ]
+
   return (
     <>
         <Navbar></Navbar>
-        <Sidebar />
+        <Sidebar category={category}/>
         <div className='body'>
-          {compArr}
+          {category.map((e) => <Hotbar refz={e.ref} category={e.category} />)}
         </div>
     </>
   )

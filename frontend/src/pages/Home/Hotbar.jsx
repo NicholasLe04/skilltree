@@ -3,7 +3,7 @@ import './Hotbar.css';
 import Treebox from './Treebox';
 import TreeCard from '../components/TreeCard';
 
-function Hotbar({category}) {
+function Hotbar({category, refz}) {
 
     const treeCard = [
         {
@@ -38,8 +38,8 @@ function Hotbar({category}) {
 
     
     return (
-        <div className="hotbar">
-            <h4 id={category}>{category}</h4>
+        <div className="hotbar" ref={refz}>
+            <h4>{category}</h4>
             <div className='treecube'>
                 {treeCard.map((e) => <TreeCard title={e.title} author={e.author} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
             </div>
