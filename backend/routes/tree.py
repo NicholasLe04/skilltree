@@ -1,7 +1,7 @@
-import backend.database.actions as Actions
-from fastapi import APIRouter
-from fastapi.responses import HTTPException, JSONResponse
-import backend.models.TreeModels as TreeModels
+import database.actions as Actions
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse
+from models.TreeModels import CreateTreeRequest
 
 router = APIRouter(
     prefix="/tree"
@@ -12,21 +12,21 @@ router = APIRouter(
 def get_tree(skilltree_id):
     try:
         tree = Actions.get_tree_by_id(skilltree_id)
-        return JSONResponse(content=tree)
+        return tree
     except:
         return HTTPException(status_code=500, detail="SQL Error")
 
 
 @router.post("/")
-def create_tree(treeObj: TreeModels.CreateTreeRequest):
+def create_tree(treeObj: CreateTreeRequest):
     try:
         Actions.create_tree(treeObj)
-        return JSONResponse(content={"tree": treeObj})
-    except:
-        raise HTTPException(status_code=500, detail="SQL Error")
+        return treeObj
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.delete("/")
+@router.delete("/{skilltree_id}")
 def delete_tree(tree_id):
     try:
         Actions.delete_tree_by_id(tree_id)

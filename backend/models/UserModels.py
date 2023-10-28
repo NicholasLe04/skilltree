@@ -1,15 +1,14 @@
-class CreateUserRequest:
+from pydantic import BaseModel
 
-    def __init__(self, username, password, verified, description) -> None:
-        self.username = username
-        self.password = password
-        self.verified = verified
-        self.description = description
 
-class GetUserResponse:
+class CreateUserRequest(BaseModel):
+    username: str
+    password: str
+    verified: str
+    description: str
 
-    def __init__(self, username, password, verified, description) -> None:
-        self.username = username
-        self.password = password
-        self.verified = verified
-        self.description = description
+class GetUserResponse(BaseModel):
+    username: str
+    password: str
+    verified: bool
+    description: str

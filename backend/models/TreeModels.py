@@ -1,23 +1,15 @@
-class CreateTreeRequest:
+from pydantic import BaseModel
 
-    def __init__(self, username, skill, description, tree) -> None:
-        self.username = username
-        self.skill = skill
-        self.description = description
-        self.tree = tree
 
-    def toDict(self) -> dict:
-        return({
-            "username": self.username,
-            "skill": self.skill,
-            "description": self.description,
-            "tree": self.tree
-        })
-    
-class GetTreeResponse:
+class CreateTreeRequest(BaseModel):
+    username: str
+    skill: str
+    description: str
+    tree: dict
 
-    def __init__(self, username, skill, description, tree) -> None:
-        self.username = username
-        self.skill = skill
-        self.description = description
-        self.tree = tree
+class GetTreeResponse(BaseModel):
+    skilltree_id: int
+    username: str
+    skill: str
+    description: str
+    tree: dict

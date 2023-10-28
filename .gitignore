@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 config.py
+
+__pycache__
