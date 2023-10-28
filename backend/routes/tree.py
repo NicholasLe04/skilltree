@@ -8,8 +8,8 @@ router = APIRouter(
 )
 
 
-@router.get("/{skilltree_id}")
-def get_tree(skilltree_id):
+@router.get("/id/{skilltree_id}")
+def get_tree_id(skilltree_id):
     try:
         tree = Actions.get_tree_by_id(skilltree_id)
         return tree
@@ -33,3 +33,11 @@ def delete_tree(tree_id):
         return JSONResponse(content={"treeid": tree_id})
     except:
         raise HTTPException(status_code=500, detail="SQL Error")
+
+@router.get("/skill/{skill}")
+def get_tree_skill(skill):
+    try:
+        tree = Actions.get_tree_by_skill(skill)
+        return tree
+    except Exception as e:
+        return HTTPException(status_code=500, detail=str(e))
