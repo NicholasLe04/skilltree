@@ -7,22 +7,28 @@ function Home() {
 
   const category = [
     { category: "Trending",
-      ref: createRef()
+      ref: createRef(),
+      img: "https://cdn-icons-png.flaticon.com/512/1946/1946485.png"
     },
     { category: "Tech",
-      ref: createRef()
+      ref: createRef(),
+      img: "https://cdn-icons-png.flaticon.com/512/4257/4257487.png"
     },
     { category: "Creative",
-      ref: createRef()
+      ref: createRef(),
+      img: "https://cdn-icons-png.flaticon.com/512/91/91061.png",
     },
     { category: "Sports",
-      ref: createRef()
+      ref: createRef(),
+      img: "https://cdn-icons-png.flaticon.com/512/2158/2158445.png",
     },
     { category: "Academic",
-      ref: createRef()
+      ref: createRef(),
+      img: "https://cdn-icons-png.flaticon.com/512/4696/4696465.png",
     },
     { category: "Saved",
-      ref: createRef()
+      ref: createRef(),
+      img: "https://cdn-icons-png.flaticon.com/512/4974/4974965.png",
     },
     
   ]

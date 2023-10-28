@@ -3,7 +3,7 @@
 .sidebar {
     width: 15%;
     height: 100%;
-    background-color: #333;
+    background-color: #575757;
     color: #fff;
     top: 20;
     left: 0;
@@ -11,6 +11,8 @@
     position: fixed;
     display: flex;
     border-right: 2px solid black;
+    font-size: 20px;
+    justify-items: baseline;
   }
   
   ul {
@@ -20,9 +22,13 @@
   
   li {
     margin-bottom: 10px;
+    position: relative;
   }
   
   li:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+  .simg {
+    position: absolute;
   }

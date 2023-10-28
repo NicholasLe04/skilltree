@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import './Tree.css';
 import React from 'react';
 import 'reactflow/dist/style.css';
+
 import Graph from "react-graph-vis";
 
 
@@ -47,6 +48,7 @@ function Tree() {
 
     const { treeID } = useParams();
     const [selectedNode, setSelectedNode] = useState();
+
 
     return (
         <>

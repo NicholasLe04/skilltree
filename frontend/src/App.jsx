@@ -5,6 +5,7 @@ import Landing from './pages/Landing/Landing';
 import Profile from './pages/Profile/Profile';
 import Create from './pages/Create/Create';
 import Login from './pages/Login/Login';
+import Search from './pages/Search/Search';
 import './App.css';
 
 
@@ -19,6 +20,7 @@ function Root() {
                     <Route path="/create" element={<Create />} />
                     <Route path="/tree/:treeID" element={<Tree />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/search" element={<Search />} />
                 </Routes>
             </div>
         </>

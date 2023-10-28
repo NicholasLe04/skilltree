@@ -1,9 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./TreeCard.css";
 
-function TreeCard({ title, author, upvotes, downvotes, treeImageURL }) {
+function TreeCard({ id, title, author, upvotes, downvotes, treeImageURL }) {
+    const navigate = useNavigate()
     return (
-        <div className="tree-card-root">
+        <div className="tree-card-root grow" onClick={() => {
+            navigate(`/tree/${id}`)
+        }}>
             <div className="tree-card-desc">
                 <div className="tree-card-title">{title}</div>
                 <div className="tree-card-author">by: {author}</div>
