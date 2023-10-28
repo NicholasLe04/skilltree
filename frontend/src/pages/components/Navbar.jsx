@@ -12,7 +12,7 @@ function Navbar() {
         </div>
         <ul className="navbar-list">
             <li className="navbar-item">Create</li>
-            <li className="navbar-item">Profile</li>
+            <Link className='link' to="/profile"><li className="navbar-item">Profile</li></Link>
         </ul>
     </div>
   );
