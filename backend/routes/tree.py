@@ -40,14 +40,16 @@ def delete_tree(tree_id):
 @router.get("/ai/{skill}")
 def generate_ai_tree(skill):
     root_skill = _generate_root_skill(skill)
-    subskills1, subskill1_edges = _generate_subskills(skill, root_skill, 1, 2)
-    subskills2, subskill2_edges = _generate_subskills(skill, subskills1[0], 2, 5)
-    subskills3, subskill3_edges = _generate_subskills(skill, subskills1[1], 3, 8)
-    subskills3, subskill3_edges = _generate_subskills(skill, subskills1[2], 4, 11)
+    print(f'generate_subskills({skill}, {root_skill["label"]}, {1}, {2})')
+    subskills1, subskill1_edges = _generate_subskills(skill, root_skill['label'], 1, 2)
+    print(f'generate_subskills({skill}, {subskills1[0]["label"]}, {2}, {5})')
+    subskills2, subskill2_edges = _generate_subskills(skill, subskills1[0]['label'], 2, 5)
+    subskills3, subskill3_edges = _generate_subskills(skill, subskills1[1]['label'], 3, 8)
+    subskills4, subskill4_edges = _generate_subskills(skill, subskills1[2]['label'], 4, 11)
 
     return JSONResponse(content={
-        "nodes": [root_skill] + subskills1 + subskills2 + subskills3, 
-        "edges": subskill1_edges + subskill2_edges + subskill3_edges
+        "nodes": [root_skill] + subskills1 + subskills2 + subskills3 + subskills4, 
+        "edges": subskill1_edges + subskill2_edges + subskill3_edges + subskill4_edges
     })
 
 
@@ -79,7 +81,7 @@ def _generate_root_skill(skill:str):
     root_node_dict['id'] = 1
     return root_node_dict
 
-def _generate_subskills(skill, subskill, skill_id, next_id) -> tuple[list[dict], list[dict]]:
+def _generate_subskills(skill:str, subskill:str, skill_id:int, next_id:int) -> tuple[list[dict], list[dict]]:
     endpoint = 'https://api.together.xyz/inference'
     res = requests.post(endpoint, json={
         "model": "togethercomputer/llama-2-70b-chat",
@@ -103,6 +105,7 @@ def _generate_subskills(skill, subskill, skill_id, next_id) -> tuple[list[dict],
         "Authorization": "Bearer f9f8c360ecd13b70905be90d2bbe6f2079f108718907f2d0884dbe8c9cfbd8a4",
     })
     result_str = res.json()['output']['choices'][0]['text']
+    print('[' + result_str[result_str.index('{')-1:result_str.index(']')+1])
     subskill_list = json.loads('[' + result_str[result_str.index('{')-1:result_str.index(']')+1])
     id_counter = next_id
 
