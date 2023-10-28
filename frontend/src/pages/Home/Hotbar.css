@@ -1,0 +1,13 @@
+
+.hotbar {
+    margin-left: 18%;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #ffffff;
+  }
+  .treecube {
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-row-gap: 50px;
+  }

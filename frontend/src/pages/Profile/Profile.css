@@ -1,0 +1,45 @@
+.profile-body {
+    width: 60%;
+    height: 100%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 50px;
+}
+
+.profile-trees {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 50px;
+}
+
+.profile-tree-text {
+    text-align: center;
+    font-size: 50px;
+    margin-top: 30px;
+}
+
+.profile-header {
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-hero {
+    display: flex;
+}
+
+.profile-pfp {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.profile-name {
+    font-size: 50px;
+}
+
+.profile-desc {
+    font-size: 20px;
+}

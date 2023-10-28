@@ -1,0 +1,43 @@
+.tree-card-root {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 15px;
+    border: black 3px solid;
+    margin: auto;
+}
+
+.tree-card-desc {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.tree-card-title {
+    font-size: 30px;
+}
+
+.tree-card-author {
+    font-size: 16px;
+}
+
+.tree-card-rating {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.tree-card-upvotes {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+}
+
+.tree-card-downvotes {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}

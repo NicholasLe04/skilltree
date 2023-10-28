@@ -24,5 +24,6 @@ dist-ssr
 *.sw?
 
 config.py
-
+settings.json
 __pycache__
+
