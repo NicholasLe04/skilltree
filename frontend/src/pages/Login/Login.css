@@ -19,7 +19,7 @@
     text-align: center;
     margin-bottom: 30px;
     font-size: 36px;
-    color: #2ed142;
+    color: #a5d800;
 }
 
 .login-container form {
@@ -44,7 +44,7 @@
 
 .login-container button {
     padding: 10px;
-    background-color: #2ed142;
+    background-color: #a5d800;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -54,18 +54,18 @@
 }
 
 .login-container button:hover {
-    background-color: #2ed142;
+    background-color: #74b800;
 }
 
 .login-container a {
     text-decoration: none;
-    color: #2ed142;
+    color: #a5d800;
     font-size: 18px;
     transition: color 0.2s ease-in-out;
 }
 
 .login-container a:hover {
-    color: #2ed142;
+    color: #74b800;
 }
 
 .login-container p {

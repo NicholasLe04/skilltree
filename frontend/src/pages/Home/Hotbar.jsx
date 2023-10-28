@@ -1,6 +1,5 @@
 import React from 'react';
 import './Hotbar.css';
-import Treebox from './Treebox';
 import TreeCard from '../components/TreeCard';
 
 function Hotbar({category, refz}) {
