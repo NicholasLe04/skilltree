@@ -38,6 +38,13 @@
 
 .profile-name {
     font-size: 50px;
+    display: inline-block;
+}
+
+.profile-verif{
+    font-size: 30px;
+    color: #00b809   ;
+    display: inline-block;
 }
 
 .profile-desc {
