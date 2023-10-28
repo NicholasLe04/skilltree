@@ -86,7 +86,7 @@ def _generate_subskills(skill:str, subskill:str, skill_id:int, next_id:int) -> t
     res = requests.post(endpoint, json={
         "model": "togethercomputer/llama-2-70b-chat",
         "max_tokens": 256,
-        "prompt": f"Create three subskills for \"" + subskill + "\" in a \"" + skill + "\" skill tree. Please list their labels and descriptions. Give your response only in Python as a list of dict objects.",
+        "prompt": f"Create three subskills for \"" + subskill + "\" in a \"" + skill + "\" skill tree. Please list their labels and descriptions. Give your response only in Python as a list of dict objects. Do not mention the parent skill.",
         "request_type": "language-model-inference",
         "temperature": 0.1,
         "top_p": 0.7,
