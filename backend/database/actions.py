@@ -86,3 +86,16 @@ def get_tree_by_skill(skill: str):
             skilltree_id, username, skill, description, tags, upvotes, downvotes, tree = treeObj
             res.append(GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, tags=tags, upvotes=upvotes, downvotes=downvotes, description=description, tree=tree))
         return res
+    
+def get_tree_by_username(username: str):
+    with connection.cursor() as cursor:
+        cursor.execute(
+            f'''
+            SELECT * FROM skilltree WHERE username='{username}';
+            '''
+        )
+        res = []
+        for treeObj in cursor.fetchall():
+            skilltree_id, username, skill, description, tags, tree = treeObj
+            res.append(GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, tags=tags, description=description, tree=tree))
+        return res

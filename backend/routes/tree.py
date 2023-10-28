@@ -41,3 +41,11 @@ def get_tree_skill(skill):
         return tree
     except Exception as e:
         return HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/user/{username}")
+def get_tree_user(username):
+    try:
+        tree = Actions.get_tree_by_username(username)
+        return tree
+    except Exception as e:
+        return HTTPException(status_code=500, detail=str(e))
