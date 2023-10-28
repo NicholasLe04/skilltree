@@ -1,5 +1,5 @@
 import database.actions as Actions
-from fastapi import APIRouter, HTTPException, Response
+from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 import models.UserModels as UserModels
 
