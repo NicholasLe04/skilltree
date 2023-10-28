@@ -24,6 +24,22 @@ def create_tree(treeObj: CreateTreeRequest):
         return treeObj
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@router.update("/upvote/{skilltree_id}")
+def upvote_tree(skilltree_id):
+    try:
+        Actions.upvote_tree(skilltree_id)
+        return skilltree_id
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@router.update("/downvote/{skilltree_id}")
+def upvote_tree(skilltree_id):
+    try:
+        Actions.downvote_tree(skilltree_id)
+        return skilltree_id
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.delete("/{skilltree_id}")
@@ -49,3 +65,4 @@ def get_tree_user(username):
         return tree
     except Exception as e:
         return HTTPException(status_code=500, detail=str(e))
+    
