@@ -39,7 +39,7 @@ function Profile() {
     const desc = user.description
 
     const pfpURL = DefaultPfp;
-
+  
     return (
         <>
             <Navbar />

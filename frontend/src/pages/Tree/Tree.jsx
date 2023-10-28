@@ -1,75 +1,70 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ReactFlow, { Controls, Background } from 'reactflow';
 import Navbar from '../components/Navbar';
 import './Tree.css';
 import React from 'react';
 import 'reactflow/dist/style.css';
 
+import Graph from "react-graph-vis";
+
+
+const options = {
+  layout: {
+    hierarchical: false
+  },
+  edges: {
+    color: "#000000"
+  },
+};
+
 
 
 function Tree() {
 
+    const [state, setState] = useState({
+        counter: 5,
+        graph: {
+            nodes: [
+            { id: 1, label: "Node 1", description: "sla;dfjdsa", color: "#c9c9c9", shape: "circle" },
+            { id: 2, label: "Node 2", description: "sla;dfjdsa", color: "#c9c9c9", shape: "circle" },
+            { id: 3, label: "Node 3", description: "sla;dfjdsa", color: "#c9c9c9", shape: "circle" },
+            { id: 4, label: "Node 4", description: "sla;dfjdsa", color: "#c9c9c9", shape: "circle" },
+            { id: 5, label: "Node 5", description: "sla;dfjdsa", color: "#c9c9c9", shape: "circle" }
+            ],
+            edges: [
+            { from: 1, to: 2 },
+            { from: 1, to: 3 },
+            { from: 2, to: 4 },
+            { from: 2, to: 5 }
+            ]
+        },
+        events: {
+            select: ({ nodes }) => {
+                setSelectedNode(state.graph.nodes[nodes-1]);
+            }
+        }
+    })
+    const { graph, events } = state;
+
     const { treeID } = useParams();
     const [selectedNode, setSelectedNode] = useState();
-    const [nodes, setNodes] = useState([]);
-    const [edges, setEdges] = useState([]);
-
-    useEffect(() => {
-        setEdges([{ id: '1-2', source: '1', target: '2', type: 'straight', style: { stroke: '#000' } }, { id: '1-3', source: '1', target: '3', type: 'straight', style: { stroke: '#000' } }]);
-
-        setNodes([
-            {
-                id: '1',
-                data: { label: 'Hello' },
-                position: { x: 200, y: 300 },
-                style: { width: '50px', height: '50px', borderRadius: '25px', lineHeight: '25px', fontSize: '10px' },
-                targetPosition: 'bottom',
-                sourcePosition: 'top',
-                description: 'bruh'
-            },
-            {
-                id: '2',
-                data: { label: 'World' },
-                position: { x: 300, y: 200 },
-                style: { width: '50px', height: '50px', borderRadius: '25px', lineHeight: '25px', fontSize: '10px' },
-                targetPosition: 'bottom',
-                sourcePosition: 'top',
-                description: 'bruh2'
-            },
-            {
-                id: '3',
-                data: { label: 'World' },
-                position: { x: 100, y: 200 },
-                style: { width: '50px', height: '50px', borderRadius: '25px', lineHeight: '25px', fontSize: '10px' },
-                targetPosition: 'bottom',
-                sourcePosition: 'top',
-                description: 'bruh3'
-            },
-        ])
-    })
-
-
 
 
     return (
         <>
             <Navbar />
-            <div className='main-content' style={{ display: 'flex', flexDirection: 'column' }}>
-                <div className='main-content' style={{ display: 'flex' }}>
+            <div className='main-content' style={{display:'flex', flexDirection:'column'}}>
+                <div className='main-content' style={{display:'flex'}}>
                     <div className='content'>
 
-                        <ReactFlow nodes={nodes} edges={edges} fitView onNodeClick={(_, node) => setSelectedNode(node)} click>
-                            <Background />
-                            <Controls />
-                        </ReactFlow>
+                        <Graph graph={graph} options={options} events={events}/>
 
                     </div>
                     <div className='sidebar-container'>
-                        {
-                            selectedNode &&
+                        { 
+                            selectedNode && 
                             <>
-                                <h1>{selectedNode.data.label}</h1>
+                                <h1>{selectedNode.label}</h1>
                                 <h3>Description</h3>
                                 <p>{selectedNode.description}</p>
                             </>
