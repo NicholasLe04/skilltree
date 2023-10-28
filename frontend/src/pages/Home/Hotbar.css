@@ -1,0 +1,14 @@
+
+.hotbar {
+    margin-left: 18%;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #333;
+  }
+  #treecube {
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 5;
+    display: flex;
+    height: 15vh;
+  }

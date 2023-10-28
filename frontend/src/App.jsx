@@ -1,9 +1,9 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Tree from './pages/Tree/Tree';
-// import Create from './pages/Create';
 import Profile from './pages/Profile/Profile';
 import './App.css';
+
 
 function Root() {
     return (
