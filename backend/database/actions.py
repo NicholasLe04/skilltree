@@ -6,7 +6,8 @@ from models.TreeModels import CreateTreeRequest, GetTreeResponse
 
 connection = get_connection()
 
-def create_user(user:CreateUserRequest):
+
+def create_user(user: CreateUserRequest):
     with connection.cursor() as cursor:
         cursor.execute(
             f'''
@@ -15,7 +16,8 @@ def create_user(user:CreateUserRequest):
             '''
         )
 
-def delete_user_by_username(username:str):
+
+def delete_user_by_username(username: str):
     with connection.cursor() as cursor:
         cursor.execute(
             f'''
@@ -23,7 +25,8 @@ def delete_user_by_username(username:str):
             '''
         )
 
-def get_user_by_username(username:str) -> GetUserResponse:
+
+def get_user_by_username(username: str) -> GetUserResponse:
     with connection.cursor() as cursor:
         cursor.execute(
             f'''
@@ -35,24 +38,31 @@ def get_user_by_username(username:str) -> GetUserResponse:
         return (GetUserResponse(username=username, password=password, verified=verified, description=description))
 
 
-def create_tree(tree:CreateTreeRequest):
+def create_tree(tree: CreateTreeRequest):
     with connection.cursor() as cursor:
+        tags_str = "ARRAY" + json.dumps(tree.tags)
         json_str = json.dumps(tree.tree).replace("'", '"')
+        print(f'''
+            INSERT INTO skilltree (username, skill, description, tags, tree)
+            VALUES ('{tree.username}', '{tree.skill}', '{tree.description}', {tags_str}, '{json_str}') RETURNING skilltree_id;
+            ''')
         cursor.execute(
             f'''
-            INSERT INTO skilltree (username, skill, description, tree)
-            VALUES ('{tree.username}', '{tree.skill}', '{tree.description}', '{json_str}') RETURNING skilltree_id;
+            INSERT INTO skilltree (username, skill, description, tags, tree)
+            VALUES ('{tree.username}', '{tree.skill}', '{tree.description}', {tags_str}, '{json_str}') RETURNING skilltree_id;
             '''
         )
         print(f'Just inserted a skilltree with id = {cursor.fetchone()}')
 
-def delete_tree_by_id(skilltree_id:int):
+
+def delete_tree_by_id(skilltree_id: int):
     with connection.cursor() as cursor:
         cursor.execute(
             f'''
             DELETE FROM skilltree WHERE skilltree_id='{skilltree_id}';
             '''
         )
+
 
 def get_tree_by_id(skilltree_id) -> GetTreeResponse:
     with connection.cursor() as cursor:
@@ -61,9 +71,11 @@ def get_tree_by_id(skilltree_id) -> GetTreeResponse:
             SELECT * FROM skilltree WHERE skilltree_id='{skilltree_id}';
             '''
         )
-
-        skilltree_id, username, skill, description, tree = cursor.fetchall()[0]
-        return (GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, description=description, tree=tree))
+        print(cursor.fetchall())
+        skilltree_id, username, skill, description, tags, tree = cursor.fetchall()[
+            0]
+        print(tags)
+        return (GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, tags=tags, description=description, tree=tree))
 
 
 '''
