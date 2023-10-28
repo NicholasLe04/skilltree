@@ -30,7 +30,7 @@ def get_user_by_username(username:str) -> GetUserResponse:
             '''
         )
 
-        username, password, verified, description = cursor.fetchall()
+        username, password, verified, description = cursor.fetchall()[0]
         return (GetUserResponse(username, password, verified, description))
 
 
@@ -59,7 +59,7 @@ def get_tree_by_id(skilltree_id) -> GetTreeResponse:
             '''
         )
 
-        _, username, skill, description, tree = cursor.fetchall()
+        _, username, skill, description, tree = cursor.fetchall()[0]
         return (GetTreeResponse(username, skill, description, tree))
 
 
