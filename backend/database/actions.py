@@ -71,8 +71,8 @@ def get_tree_by_id(skilltree_id) -> GetTreeResponse:
             SELECT * FROM skilltree WHERE skilltree_id='{skilltree_id}';
             '''
         )
-        skilltree_id, username, skill, description, tags, tree = cursor.fetchall()[0]
-        return (GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, tags=tags, description=description, tree=tree))
+        skilltree_id, username, skill, description, tags, upvotes, downvotes, tree = cursor.fetchall()[0]
+        return GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, tags=tags, upvotes=upvotes, downvotes=downvotes, description=description, tree=tree)
 
 def get_tree_by_skill(skill: str):
     with connection.cursor() as cursor:
@@ -83,6 +83,6 @@ def get_tree_by_skill(skill: str):
         )
         res = []
         for treeObj in cursor.fetchall():
-            skilltree_id, username, skill, description, tags, tree = treeObj
-            res.append(GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, tags=tags, description=description, tree=tree))
+            skilltree_id, username, skill, description, tags, upvotes, downvotes, tree = treeObj
+            res.append(GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, tags=tags, upvotes=upvotes, downvotes=downvotes, description=description, tree=tree))
         return res
