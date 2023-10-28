@@ -1,4 +1,4 @@
-.profileBody {
+.profile-body {
     width: 60%;
     height: 100%;
     margin-left: 20%;
@@ -6,40 +6,40 @@
     margin-top: 50px;
 }
 
-.profileTrees {
+.profile-trees {
     margin-top: 15px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-row-gap: 50px;
 }
 
-.profileTreeText {
+.profile-tree-text {
     text-align: center;
     font-size: 50px;
     margin-top: 30px;
 }
 
-.profileHeader {
+.profile-header {
     margin-left: 5%;
     display: flex;
     flex-direction: column;
 }
 
-.profileHero {
+.profile-hero {
     display: flex;
 }
 
-.profilePfp {
+.profile-pfp {
     object-fit: cover;
     width: 200px;
     height: 200px;
     border-radius: 100px;
 }
 
-.profileName {
+.profile-name {
     font-size: 50px;
 }
 
-.profileDesc {
+.profile-desc {
     font-size: 20px;
 }

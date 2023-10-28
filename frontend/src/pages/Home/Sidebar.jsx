@@ -4,7 +4,6 @@ import React from 'react';
 import './Sidebar.css'; // Import the CSS file for styling
 
 function Sidebar({category}) {
-
   return (
     <div className="sidebar">
       <ul>

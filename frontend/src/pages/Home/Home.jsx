@@ -1,5 +1,5 @@
 import React, { createRef } from 'react'
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import Hotbar from './Hotbar';
 import Sidebar from './Sidebar';
 
