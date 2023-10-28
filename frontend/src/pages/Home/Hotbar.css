@@ -5,10 +5,10 @@
     padding: 10px;
     background-color: #ffffff;
   }
-  #treecube {
-    justify-content: space-between;
-    flex-direction: row;
-    padding: 5;
-    display: flex;
-    height: 15vh;
+  .treecube {
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-row-gap: 50px;
   }
+  

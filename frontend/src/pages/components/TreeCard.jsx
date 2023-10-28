@@ -9,11 +9,11 @@ function TreeCard({ title, author, upvotes, downvotes, treeImageURL }) {
                 <div className="treeCardAuthor">by: {author}</div>
                 <div className="treeCardRating">
                     <div className="treeCardUpvotes">
-                        <div>upvotes</div>
+                        <div>upvotes: </div>
                         <div>{upvotes}</div>
                     </div>
                     <div className="treeCardDownvotes">
-                        <div>downvotes</div>
+                        <div>downvotes: </div>
                         <div>{downvotes}</div>
                     </div>
                 </div>
