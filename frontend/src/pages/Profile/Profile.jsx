@@ -6,6 +6,7 @@ import "./Profile.css"
 function Profile() {
 
     // get profile based on username
+    const verified = true;
     const name = "Oscar Crespo";
     const desc = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique vel eius qui fuga nesciunt esse consequatur labore in cumque doloribus. Eos architecto at eius voluptas aspernatur, consequuntur soluta ad ipsam.";
     const pfpURL = "https://i.ytimg.com/vi/TC0YgcDbHHM/maxresdefault.jpg";
@@ -54,7 +55,7 @@ function Profile() {
                 <div className="profile-hero">
                     <img src={pfpURL} className="profile-pfp"></img>
                     <div className="profile-header">
-                        <div className="profile-name">{name}</div>
+                        <div className="profile-name">{name}{verified ? (<div className="profile-verif"><img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png" width={45} height={35}/></div>):null}</div>
                         <div className="profile-desc">{desc}</div>
                     </div>
                 </div>

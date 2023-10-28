@@ -9,8 +9,9 @@
 .profile-trees {
     margin-top: 15px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-row-gap: 50px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 30px;
+    grid-column-gap: 5px;
 }
 
 .profile-tree-text {
@@ -38,6 +39,13 @@
 
 .profile-name {
     font-size: 50px;
+    display: inline-block;
+}
+
+.profile-verif{
+    font-size: 30px;
+    color: #00b809   ;
+    display: inline-block;
 }
 
 .profile-desc {

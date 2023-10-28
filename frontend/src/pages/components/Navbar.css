@@ -35,16 +35,17 @@
 }
 
 button {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #1cee74;
+    color: #333;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition-duration: .5s;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #0cb300;
 }
 .link{
     color: #fff;
