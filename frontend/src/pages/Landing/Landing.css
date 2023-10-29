@@ -1,19 +1,26 @@
 .landing{
     display: flex;
-    justify-content: center;
     flex-direction: row;
+    gap: 50px;
+    padding-right: 5vh;
+    height: 90.5vh;
+    width: auto;
+    background-color: #ffffff7f;
 }
+
 .logo{
-    flex-shrink: 1;
+
 }
+
 .welcome{
-    height: 50vh;
-    width: 100vh;
+    height: 60vh;
+    width: 60vh;
+    transition: margin 1s;
     border-radius: 5px;
-    margin: 5%;
-    box-shadow: rgba(46, 240, 149, 0.4) 5px 5px, rgba(46, 240, 162, 0.3) 10px 10px, rgba(1, 189, 101, 0.2) 15px 15px, rgba(1, 133, 65, 0.1) 20px 20px;
-    background-color: #eeeeee;
-    padding-left: 10px;
+    border: #eeeeee6d solid 5px;
+    margin-top: 5%;
+    box-shadow: rgba(46, 240, 149, 0.4) 5px 5px, rgba(1, 189, 101, 0.2) 15px 15px;
+    background-color: #eeeeee9e;
 }
 .wel{
     margin-top: 30%;

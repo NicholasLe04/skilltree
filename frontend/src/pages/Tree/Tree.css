@@ -1,4 +1,6 @@
-.sidebar-container, .content, .bottom-container {
+.sidebar-container,
+.content,
+.bottom-container {
     /* width: 100%; */
     box-sizing: border-box;
     padding: 20px;
@@ -7,19 +9,23 @@
 .sidebar-container {
     background-color: #444;
     color: #fff;
-    flex: 0 0 500px; /* Fixed width for the sidebar */
+    flex: 0 0 500px;
+    /* Fixed width for the sidebar */
 }
 
 .content {
     background-color: #f0f0f0;
     height: calc(100vh - 180px);
-    flex: 1; /* Takes up remaining space */
-    overflow-y: auto; /* Add scrollbar if needed */
+    flex: 1;
+    /* Takes up remaining space */
+    overflow-y: auto;
+    /* Add scrollbar if needed */
 }
 
 .bottom-container {
     display: flex;
-    height: 100px;
+    flex-direction: row;
+    height: 111px;
     background-color: #333;
     color: #fff;
     justify-content: space-between;
@@ -30,4 +36,51 @@
 .bottom-container button {
     height: 50%;
     border-radius: 10px;
+}
+
+.tree-title {
+    font-size: 30px;
+    flex: 1;
+    font-weight: 700;
+}
+
+.author-pane {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.author {
+    flex: 1;
+    font-size: 16px;
+}
+
+.tags {
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.ratings {
+    display: flex;
+    gap: 30px;
+}
+
+.upvotes {
+    display: flex;
+    gap: 3px;
+}
+
+.downvotes {
+    display: flex;
+    gap: 3px;
+}
+
+.side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
