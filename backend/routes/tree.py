@@ -56,12 +56,12 @@ def delete_tree(tree_id):
 
 @router.get("/ai/{skill}")
 def generate_ai_tree(skill):
-    root_skill = _generate_root_skill(skill)
-    subskills1, subskill1_edges = _generate_subskills(skill, skill, 1, 2)
-    subskills2, subskill2_edges = _generate_subskills(skill, subskills1[0]['label'], 2, 5)
-    subskills3, subskill3_edges = _generate_subskills(skill, subskills1[1]['label'], 3, 8)
-    subskills4, subskill4_edges = _generate_subskills(skill, subskills1[2]['label'], 4, 11)
-
+    root_skill = generate_root_skill(skill)
+    subskills1, subskill1_edges = generate_subskills(skill, skill, 1, 2)
+    subskills2, subskill2_edges = generate_subskills(skill, subskills1[0]['label'], 2, 5)
+    subskills3, subskill3_edges = generate_subskills(skill, subskills1[1]['label'], 3, 8)
+    subskills4, subskill4_edges = generate_subskills(skill, subskills1[2]['label'], 4, 11)
+    
     return JSONResponse(content={
         "nodes": [root_skill] + subskills1 + subskills2 + subskills3 + subskills4, 
         "edges": subskill1_edges + subskill2_edges + subskill3_edges + subskill4_edges
@@ -92,7 +92,7 @@ def get_tree_tag(tag):
     except Exception as e:
         return HTTPException(status_code=500, detail=str(e))
 
-def _generate_root_skill(skill:str):
+def generate_root_skill(skill:str):
     endpoint = 'https://api.together.xyz/inference'
     res = requests.post(endpoint, json={
         "model": "togethercomputer/llama-2-70b-chat",
@@ -131,7 +131,7 @@ def _generate_root_skill(skill:str):
         'shape': 'circle'
     })
 
-def _generate_subskills(skill:str, subskill:str, skill_id:int, next_id:int) -> 'tuple[list[dict], list[dict]]':
+def generate_subskills(skill:str, subskill:str, skill_id:int, next_id:int) -> 'tuple[list[dict], list[dict]]':
     endpoint = 'https://api.together.xyz/inference'
     res = requests.post(endpoint, json={
         "model": "togethercomputer/llama-2-70b-chat",
