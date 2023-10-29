@@ -23,12 +23,14 @@
 .navbar-search {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .navbar-search input[type="text"] {
     width: 500px;
     height: 22px;
     padding: 5px;
+    padding-left: 12px;
     border: 0px solid #777;
     border-radius: 22px;
     margin-right: 10px;
@@ -46,9 +48,10 @@ button {
 }
 
 button:hover {
-  background-color: #74b800;
+    background-color: #74b800;
 }
-.link{
+
+.link {
     color: #fff;
-    text-decoration: none ;
+    text-decoration: none;
 }

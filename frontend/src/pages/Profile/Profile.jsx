@@ -4,6 +4,7 @@ import TreeCard from "../components/TreeCard";
 import "./Profile.css"
 import axios from "axios";
 import DefaultPfp from "../../assets/images/default-pfp.png"
+import checkmark from "../../assets/images/checkmark.svg"
 import { useParams } from "react-router-dom";
 
 function Profile() {
@@ -39,7 +40,7 @@ function Profile() {
     const desc = user.description
 
     const pfpURL = DefaultPfp;
-  
+
     return (
         <>
             <Navbar />
@@ -47,7 +48,7 @@ function Profile() {
                 <div className="profile-hero">
                     <img src={pfpURL} className="profile-pfp"></img>
                     <div className="profile-header">
-                        <div className="profile-name">{name}{verified ? (<div className="profile-verif"><img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png" width={45} height={45} /></div>) : null}</div>
+                        <div className="profile-name">{name}{verified ? (<div className="profile-verif"><img src={checkmark} width={45} height={45} /></div>) : null}</div>
                         <div className="profile-desc">{desc}</div>
                     </div>
                 </div>

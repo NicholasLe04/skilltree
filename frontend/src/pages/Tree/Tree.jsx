@@ -6,8 +6,8 @@ import Tag from './Tag';
 import './Tree.css';
 import React from 'react';
 import 'reactflow/dist/style.css';
-import downArrow from '../../assets/images/arrow_down.svg';
-import upArrow from '../../assets/images/arrow_up.svg';
+import downArrow from '../../assets/images/arrow_down_white.svg';
+import upArrow from '../../assets/images/arrow_up_white.svg';
 
 import Graph from "react-graph-vis";
 
@@ -29,12 +29,16 @@ function Tree() {
     const [skills, setNodes] = useState([])
     const [edges, setEdges] = useState([])
     const [treeData, setTreeData] = useState({})
+    const [upvotesLocal, setUpvotes] = useState("")
+    const [downvotesLocal, setDownvotes] = useState("")
 
     useEffect(() => {
         axios.get(`http://localhost:6969/tree/id/${treeID}`)
             .then(response => {
                 setNodes(response.data.tree.nodes);
                 setEdges(response.data.tree.edges);
+                setUpvotes(response.data.tree.upvotes);
+                setDownvotes(response.data.tree.downvotes);
                 setTreeData(response.data);
                 console.log(treeData)
             })
@@ -88,11 +92,23 @@ function Tree() {
                             <div className='ratings'>
                                 <div className='upvotes'>
                                     <div>{treeData.upvotes}</div>
-                                    <img src={upArrow} />
+                                    <img src={upArrow} onClick={(e) => {
+                                        e.stopPropagation()
+                                        axios.put(`/tree/upvote/${id}`)
+                                        setDownvotes(upvotesLocal + 1)
+                                    }}
+                                        style={{ display: "block" }
+                                        } />
                                 </div>
                                 <div className='downvotes'>
                                     <div>{treeData.downvotes}</div>
-                                    <img src={downArrow} style={{ display: "block" }} />
+                                    <img src={downArrow} onClick={(e) => {
+                                        e.stopPropagation()
+                                        axios.put(`/tree/downvote/${id}`)
+                                        setDownvotes(downvotesLocal + 1)
+                                    }}
+                                        style={{ display: "block" }
+                                        } />
                                 </div>
                             </div>
                         </div>

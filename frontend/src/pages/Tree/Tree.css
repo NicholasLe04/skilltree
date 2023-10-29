@@ -59,7 +59,7 @@
 
 .ratings {
     display: flex;
-    gap: 20px;
+    gap: 30px;
 }
 
 .upvotes {
@@ -70,7 +70,6 @@
 .downvotes {
     display: flex;
     gap: 3px;
-
 }
 
 .side {
