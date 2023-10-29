@@ -20,7 +20,7 @@ function TreeCard({ id, title, author, upvotes, downvotes, treeImageURL }) {
                 <div className="tree-card-author">by: {author}</div>
                 <div className="tree-card-rating">
                     <div className="tree-card-upvotes">
-                        <img src={arrowUp} onClick={(e) => {
+                        <img src={arrowUp} width={15} height={15} onClick={(e) => {
                             e.stopPropagation()
                             axios.put(`/tree/upvote/${id}`)
                             setUpvotes(upvotesLocal + 1)
@@ -28,7 +28,7 @@ function TreeCard({ id, title, author, upvotes, downvotes, treeImageURL }) {
                         <div>{upvotesLocal}</div>
                     </div>
                     <div className="tree-card-downvotes">
-                        <img src={arrowDown} onClick={(e) => {
+                        <img src={arrowDown} width={15} height={15} onClick={(e) => {
                             e.stopPropagation()
                             axios.put(`/tree/downvote/${id}`)
                             setDownvotes(downvotesLocal + 1)

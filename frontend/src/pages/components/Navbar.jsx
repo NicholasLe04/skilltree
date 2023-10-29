@@ -17,7 +17,7 @@ function Navbar() {
                 <button type="submit"><img src={MagGlass} width={15} height={17} /></button>
             </form>
             <ul className="navbar-list">
-                <li className="navbar-item">Create</li>
+                <Link className='link' to='/create'><li className="navbar-item">Create</li></Link>
                 <Link className='link' to="/profile"><li className="navbar-item">Profile</li></Link>
             </ul>
         </div>

@@ -26,9 +26,9 @@ const options = {
     "physics": {
         "enabled": true,
         "barnesHut": {
-          "gravitationalConstant": -10000,
-          "centralGravity": 0.5,
-          "springLength": 100
+            "gravitationalConstant": -10000,
+            "centralGravity": 0.5,
+            "springLength": 100
         },
     }
 };
@@ -44,16 +44,17 @@ function Tree() {
     const [treeData, setTreeData] = useState({})
     const [upvotesLocal, setUpvotes] = useState("")
     const [downvotesLocal, setDownvotes] = useState("")
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         axios.get(`http://localhost:6969/tree/id/${treeID}`)
             .then(response => {
                 setNodes(response.data.tree.nodes);
                 setEdges(response.data.tree.edges);
-                setUpvotes(response.data.tree.upvotes);
-                setDownvotes(response.data.tree.downvotes);
+                setUpvotes(response.data.upvotes);
+                setDownvotes(response.data.downvotes);
                 setTreeData(response.data);
-                console.log(treeData)
+                setLoaded(true);
             })
             .catch(error => {
                 console.log(error)
@@ -72,67 +73,69 @@ function Tree() {
     return (
         <>
             <Navbar />
-            <div className='main-content' style={{ display: 'flex', flexDirection: 'column' }}>
-                <div className='main-content' style={{ display: 'flex' }}>
-                    <div className='content'>
+            {loaded ?
+                <div className='main-content' style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className='main-content' style={{ display: 'flex' }}>
+                        <div className='content'>
 
-                        {skills && edges && <Graph
-                            graph={{
-                                "nodes": skills,
-                                "edges": edges
-                            }}
-                            options={options}
-                            events={events}
-                        />}
+                            {skills && edges && <Graph
+                                graph={{
+                                    "nodes": skills,
+                                    "edges": edges
+                                }}
+                                options={options}
+                                events={events}
+                            />}
 
+                        </div>
+                        <div className='sidebar-container'>
+                            {
+                                selectedNode &&
+                                <>
+                                    <h1>{selectedNode.label}</h1>
+                                    <h3>Description</h3>
+                                    <p>{selectedNode.description}</p>
+                                </>
+                            }
+                        </div>
                     </div>
-                    <div className='sidebar-container'>
-                        {
-                            selectedNode &&
-                            <>
-                                <h1>{selectedNode.label}</h1>
-                                <h3>Description</h3>
-                                <p>{selectedNode.description}</p>
-                            </>
-                        }
-                    </div>
-                </div>
-                <div className='bottom-container'>
-                    <div className='side'>
-                        <div className='tree-title'>{treeData.skill}</div>
-                        <div className='author-pane'>
-                            <div className='author'>by {treeData.username}</div>
-                            <div className='ratings'>
-                                <div className='upvotes'>
-                                    <div>{treeData.upvotes}</div>
-                                    <img src={upArrow} onClick={(e) => {
-                                        e.stopPropagation()
-                                        axios.put(`/tree/upvote/${id}`)
-                                        setDownvotes(upvotesLocal + 1)
-                                    }}
-                                        style={{ display: "block" }
-                                        } />
-                                </div>
-                                <div className='downvotes'>
-                                    <div>{treeData.downvotes}</div>
-                                    <img src={downArrow} onClick={(e) => {
-                                        e.stopPropagation()
-                                        axios.put(`/tree/downvote/${id}`)
-                                        setDownvotes(downvotesLocal + 1)
-                                    }}
-                                        style={{ display: "block" }
-                                        } />
+                    <div className='bottom-container'>
+                        <div className='side'>
+                            <div className='tree-title'>{treeData.skill}</div>
+                            <div className='author-pane'>
+                                <div className='author'>by {treeData.username}</div>
+                                <div className='ratings'>
+                                    <div className='upvotes'>
+                                        <div>{treeData.upvotes}</div>
+                                        <img src={upArrow} onClick={(e) => {
+                                            e.stopPropagation()
+                                            axios.put(`/tree/upvote/${id}`)
+                                            setDownvotes(upvotesLocal + 1)
+                                        }}
+                                            style={{ display: "block" }
+                                            } />
+                                    </div>
+                                    <div className='downvotes'>
+                                        <div>{treeData.downvotes}</div>
+                                        <img src={downArrow} onClick={(e) => {
+                                            e.stopPropagation()
+                                            axios.put(`/tree/downvote/${id}`)
+                                            setDownvotes(downvotesLocal + 1)
+                                        }}
+                                            style={{ display: "block" }
+                                            } />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='side'>
-                        <div className='tags'>
-                            {(treeData.tags).map((tag) => <Tag tag={tag} />)}
+                        <div className='side'>
+                            <div className='tags'>
+                                {(treeData.tags).map((tag) => <Tag tag={tag} />)}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> : <div />
+            }
         </>
     )
 }
