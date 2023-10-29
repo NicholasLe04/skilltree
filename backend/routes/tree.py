@@ -84,7 +84,13 @@ def get_tree_user(username):
         return HTTPException(status_code=500, detail=str(e))
     
     
-    
+@router.get("/tag/{tag}")
+def get_tree_tag(tag):
+    try:
+        tree = Actions.get_tree_by_tag(tag)
+        return tree
+    except Exception as e:
+        return HTTPException(status_code=500, detail=str(e))
 
 def _generate_root_skill(skill:str):
     endpoint = 'https://api.together.xyz/inference'

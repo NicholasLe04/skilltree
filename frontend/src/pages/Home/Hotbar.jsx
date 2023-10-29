@@ -4,14 +4,15 @@ import axios from 'axios';
 import './Hotbar.css';
 import TreeCard from '../components/TreeCard';
 
-function Hotbar({category, refz}) {
+function Hotbar({ category, refz }) {
 
+    console.log(category)
 
     const refe = createRef();
 
     const [treeCard, setTreeCard] = useState([])
     useEffect(() => {
-        axios.get(`ttp://127.0.0.1:6969/tree/skill/${category.toLowerCase()}`)
+        axios.get(`http://127.0.0.1:6969/tree/tag/${category.toLowerCase()}`)
             .then((res) => {
                 setTreeCard(res.data)
             })
@@ -22,49 +23,49 @@ function Hotbar({category, refz}) {
 
     const zCard = [
         {
-            title:"z",
+            title: "z",
             author: "goombus",
             upvotes: "6",
             downvotes: "9",
             treeImageURL: "",
         },
         {
-            title:"z",
+            title: "z",
             author: "goombus",
             upvotes: "6",
             downvotes: "9",
             treeImageURL: "",
         },
         {
-            title:"z",
+            title: "z",
             author: "goombus",
             upvotes: "6",
             downvotes: "9",
             treeImageURL: "",
         },
         {
-            title:"z",
+            title: "z",
             author: "goombus",
             upvotes: "6",
             downvotes: "9",
             treeImageURL: "",
         },
         {
-            title:"z",
+            title: "z",
             author: "goombus",
             upvotes: "6",
             downvotes: "9",
             treeImageURL: "",
         },
         {
-            title:"z",
+            title: "z",
             author: "goombus",
             upvotes: "6",
             downvotes: "9",
             treeImageURL: "",
         },
         {
-            title:"z",
+            title: "z",
             author: "goombus",
             upvotes: "6",
             downvotes: "9",
@@ -81,11 +82,11 @@ function Hotbar({category, refz}) {
         <div className="hotbar" ref={refz}>
             <h4 className="header" style={{ marginLeft: '60px' }}>{category}</h4>
             <div className='arrowwrap'>
-                <button class="leftb" onClick={() => scroll(255)}>{">"}</button>
+                <button className="leftb" onClick={() => scroll(255)}>{">"}</button>
                 <div className='treecube' ref={refe}>
-                    {zCard.map((e) => <TreeCard title={e.title} author={e.author} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
+                    {treeCard.map((e) => <TreeCard title={e.title} author={e.author} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
                 </div>
-                <button class="rightb" onClick={() => scroll(-255)}>{"<"}</button>
+                <button className="rightb" onClick={() => scroll(-255)}>{"<"}</button>
             </div>
         </div>
     );
