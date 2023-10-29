@@ -226,9 +226,9 @@ function Create() {
                     </div>
                 </div>
                 <div className='bottom-container'>
-                    <button onClick={() => { generateAITree(topic) }}>MAGIC WAND</button>
+                    <button className='createButton' onClick={() => {generateAITree(topic)}}>MAGIC WAND</button>
                     <input type="text" className="topic-editor" placeholder="topic" onChange={(e) => setTopic(e.target.value)} />
-                    <button onClick={() => { saveTree() }}>POST</button>
+                    <button className='createButton' onClick={() => {saveTree()}}>Publish</button>
                 </div>
             </div>
         </>

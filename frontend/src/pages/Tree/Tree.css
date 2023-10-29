@@ -7,14 +7,18 @@
 }
 
 .sidebar-container {
-    background-color: #444;
-    color: #fff;
+    padding: 40px;
+    background-color: #ededed;
+    font-size: 25px;
+    color: #141414;
     flex: 0 0 500px;
     /* Fixed width for the sidebar */
 }
 
 .content {
-    background-color: #f0f0f0;
+    background-color: #ededed;
+    color: #141414;
+    font-family: "articulat-cf";
     height: calc(100vh - 180px);
     flex: 1;
     /* Takes up remaining space */
@@ -26,7 +30,7 @@
     display: flex;
     flex-direction: row;
     height: 111px;
-    background-color: #333;
+    background-color: #141414;
     color: #fff;
     justify-content: space-between;
     align-items: center;
@@ -35,7 +39,12 @@
 
 .bottom-container button {
     height: 50%;
-    border-radius: 10px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 800;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-family: "articulat-cf";
 }
 
 .tree-title {

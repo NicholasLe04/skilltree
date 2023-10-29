@@ -3,14 +3,16 @@
 .sidebar {
     width: 13%;
     height: 100%;
-    background-color: #74b800;
+    background-color: #141414;
     color: #fff;
     top: 20;
     left: 0;
-    padding: 40px;
+    padding-left: 45px;
+    padding-right: 15px;
+    padding-top: 10px;
     position: fixed;
     display: flex;
-    font-weight: 800;
+    font-weight: 600;
     font-size: 24px;
   }
 
@@ -35,4 +37,15 @@
   }
   .simg {
     position: absolute;
+  }
+
+
+
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }

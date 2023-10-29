@@ -4,10 +4,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 40px;
+    padding-right: 50px;
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 10;
 }
 
 .navbar-list {
@@ -30,7 +33,7 @@
 .navbar-search input[type="text"] {
     font-weight: 400;
     width: 500px;
-    height: 22px;
+    height: 25px;
     padding: 5px;
     padding-left: 12px;
     border: 0px solid #777;
@@ -46,7 +49,8 @@ button {
     height: 25px;
     border-radius: 22px;
     cursor: pointer;
-    transition-duration: .5s;
+    transition-duration: .1s;
+    transition: all .1s ease-in-out; 
 
 }
 
@@ -59,4 +63,30 @@ button:hover {
     font-weight: 800;
     color: #141414;
     text-decoration: none ;
+}
+
+.navButton {
+    display: inline;
+    margin-left: 30px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #141414;
+    text-decoration: none ;
+}
+
+.navButton:hover {
+    color: #fff;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 23px;
+    color: #141414;
+    text-decoration: none ;
+    transition-duration: .1s;
+    transition: all .1s ease-in-out; 
+}
+
+.title:hover {
+    color: #fff;
 }

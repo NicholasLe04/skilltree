@@ -7,7 +7,6 @@ function Sidebar({category}) {
   return (
     <div className="sidebar">
       <ul>
-        <li>Explore</li>
         {category.map((e) => <li onClick={() => e.ref.current.scrollIntoView({behavior: "smooth"})}> {e.category} </li>)}
       </ul>
     </div>
