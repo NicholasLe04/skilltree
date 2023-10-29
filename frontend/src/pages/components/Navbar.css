@@ -1,6 +1,6 @@
 .navbar {
     background-color: #a5d800;
-    color: #fff;
+    color: #141414;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,9 +27,10 @@
 }
 
 .navbar-search input[type="text"] {
+    font-weight: 400;
     width: 500px;
     height: 22px;
-    padding: 5px;
+    padding: 5px 5px 5px 15px;
     border: 0px solid #777;
     border-radius: 22px;
     margin-right: 10px;
@@ -40,16 +41,20 @@ button {
     color: #313131;
     padding: 5px 10px;
     border: none;
-    border-radius: 5px;
+    height: 25px;
+    border-radius: 22px;
     cursor: pointer;
     transition-duration: .5s;
 
 }
 
 button:hover {
-  background-color: #74b800;
+  transform: scale(1.04);
+  background-color: #d9ff2e;
 }
+
 .link{
-    color: #fff;
+    font-weight: 800;
+    color: #141414;
     text-decoration: none ;
 }
