@@ -1,0 +1,11 @@
+.tag {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: fit-content;
+    width: fit-content;
+    flex: 0, 0, auto;
+    background-color: #eee;
+    color: #000000;
+    border-radius: 8px;
+}
