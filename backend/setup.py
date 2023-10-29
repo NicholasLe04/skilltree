@@ -9,3 +9,9 @@ def setup():
         cur.execute(
             "CREATE TABLE IF NOT EXISTS skilltree(skilltree_id VARCHAR(64) PRIMARY KEY, username VARCHAR(60) REFERENCES users(username), skill VARCHAR(128) NOT NULL, description VARCHAR, tags VARCHAR(128)[], upvotes INTEGER NOT NULL DEFAULT '0', downvotes INTEGER NOT NULL DEFAULT '0', tree JSON NOT NULL);"
         )
+        cur.execute(
+            '''
+            INSERT INTO users(username, password, verified, description)
+            VALUES ('oscar', 'coach', 'true', 'epic ball guy');
+            '''
+        )

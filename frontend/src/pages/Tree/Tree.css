@@ -23,12 +23,19 @@
 }
 
 .bottom-container {
+    display: flex;
+    flex-direction: row;
     height: 111px;
     background-color: #333;
     color: #fff;
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+
+.bottom-container button {
+    height: 50%;
+    border-radius: 10px;
 }
 
 .tree-title {

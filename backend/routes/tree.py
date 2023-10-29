@@ -1,4 +1,5 @@
 import json
+import random
 import requests
 
 import database.actions as Actions
@@ -56,9 +57,7 @@ def delete_tree(tree_id):
 @router.get("/ai/{skill}")
 def generate_ai_tree(skill):
     root_skill = _generate_root_skill(skill)
-    print(f'generate_subskills({skill}, {root_skill["label"]}, {1}, {2})')
-    subskills1, subskill1_edges = _generate_subskills(skill, root_skill['label'], 1, 2)
-    print(f'generate_subskills({skill}, {subskills1[0]["label"]}, {2}, {5})')
+    subskills1, subskill1_edges = _generate_subskills(skill, skill, 1, 2)
     subskills2, subskill2_edges = _generate_subskills(skill, subskills1[0]['label'], 2, 5)
     subskills3, subskill3_edges = _generate_subskills(skill, subskills1[1]['label'], 3, 8)
     subskills4, subskill4_edges = _generate_subskills(skill, subskills1[2]['label'], 4, 11)
@@ -92,7 +91,7 @@ def _generate_root_skill(skill:str):
     res = requests.post(endpoint, json={
         "model": "togethercomputer/llama-2-70b-chat",
         "max_tokens": 512,
-        "prompt": "What would be the root skill in a skill tree for \"" + skill + "\"? Give a label and description in JSON format. Do not mention any subskills.",
+        "prompt": "Give a simple 1-2 sentence description of \"" + skill + ".\"",
         "request_type": "language-model-inference",
         "temperature": 0.15,
         "top_p": 0.7,
@@ -110,17 +109,28 @@ def _generate_root_skill(skill:str):
     }, headers={
         "Authorization": "Bearer f9f8c360ecd13b70905be90d2bbe6f2079f108718907f2d0884dbe8c9cfbd8a4",
     })
-    result_str = res.json()['output']['choices'][0]['text']
-    root_node_dict = json.loads(result_str[result_str.index('{'):result_str.index('}')+1])
-    root_node_dict['id'] = 1
-    return root_node_dict
+    description = res.json()['output']['choices'][0]['text']
+    return ({
+        "id": 1,
+        "label": skill,
+        "description": description,
+        'color': '#c9c9c9',
+        'x': (random.uniform(0,1) * 50) - 25,
+        'y': (random.uniform(0,1) * 50) - 25,
+        'heightConstraint': 100,
+        'widthConstraint': {
+            'maximum': 100,
+        },
+        'physics': True,
+        'shape': 'circle'
+    })
 
 def _generate_subskills(skill:str, subskill:str, skill_id:int, next_id:int) -> tuple[list[dict], list[dict]]:
     endpoint = 'https://api.together.xyz/inference'
     res = requests.post(endpoint, json={
         "model": "togethercomputer/llama-2-70b-chat",
         "max_tokens": 256,
-        "prompt": f"Create three subskills for \"" + subskill + "\" in a \"" + skill + "\" skill tree. Please list their labels and descriptions. Give your response only in Python as a list of dict objects. Do not mention the parent skill.",
+        "prompt": f"Create three subskills for \"" + subskill + "\" in a \"" + skill + "\" skill tree. Please list their labels and descriptions. Give your response only in Python as a list of dict objects. Do not mention the parent skill and do not write code snippets.",
         "request_type": "language-model-inference",
         "temperature": 0.1,
         "top_p": 0.7,
@@ -145,6 +155,13 @@ def _generate_subskills(skill:str, subskill:str, skill_id:int, next_id:int) -> t
 
     for subskill in subskill_list:
         subskill['id'] = id_counter
+        subskill['color'] = '#c9c9c9'
+        subskill['x'] = (random.uniform(0,1) * 50) - 25
+        subskill['y'] = (random.uniform(0,1) * 50) - 25
+        subskill['heightConstraint'] = 100
+        subskill['widthConstraint'] = { 'maximum': 100 }
+        subskill['physics'] = True
+        subskill['shape'] = 'circle'
         id_counter += 1
 
     edge_list = []
