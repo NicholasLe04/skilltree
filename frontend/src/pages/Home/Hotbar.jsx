@@ -79,7 +79,7 @@ function Hotbar({category, refz}) {
 
     return (
         <div className="hotbar" ref={refz}>
-            <h4 style={{ marginLeft: '60px' }}>{category}</h4>
+            <h1 style={{ margin: "0 20px" }}>{category}</h1>
             <div className='arrowwrap'>
                 <button class="leftb" onClick={() => scroll(300)}>{">"}</button>
                 <div className='treecube' ref={refe}>

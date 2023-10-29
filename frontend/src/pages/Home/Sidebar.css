@@ -1,13 +1,15 @@
 /* Sidebar.css */
 
 .sidebar {
-    width: 13%;
+    width: 14%;
     height: 100%;
-    background-color: #74b800;
+    background-color: #141414;
     color: #fff;
     top: 20;
     left: 0;
-    padding: 40px;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-left: 60px;
     position: fixed;
     display: flex;
     font-weight: 800;
@@ -33,6 +35,7 @@
     cursor: pointer;
     color: #d9ff2e;
   }
+
   .simg {
     position: absolute;
   }
