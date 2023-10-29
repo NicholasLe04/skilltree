@@ -117,12 +117,27 @@ function Create() {
 
     const saveTree = () => {
         console.log('saving that')
+
+        skills.map((skill) => {skill.description = skill.description.replace("\"", "'")});
+          
+        console.log({
+            "username": "oscar",
+            "skill": topic,
+            "description": "",
+            "tags": [
+              'sports', 'tech'
+            ],
+            "tree": {
+              "nodes": skills,
+              "edges": edges
+            }
+          })
         axios.post("http://localhost:6969/tree/", {
             "username": "oscar",
             "skill": topic,
             "description": "",
             "tags": [
-              "sports", "tech"
+              'sports', 'tech'
             ],
             "tree": {
               "nodes": skills,
@@ -133,7 +148,8 @@ function Create() {
           console.log('Response:', response.data);
         })
         .catch((error) => {
-          console.error('Error:', error);
+            
+            console.error('Error:', error);
         });
       
     }
@@ -148,7 +164,7 @@ function Create() {
                     <DimmedOverlay/>
                     <img src={loadingGIF} style={{
                         position: 'fixed',
-                        zIndex: '999999',
+                        zIndex: '99999999999',
                         height: '30vh',
                         left: '50%',
                         top: '50%',

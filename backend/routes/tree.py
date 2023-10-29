@@ -91,7 +91,7 @@ def _generate_root_skill(skill:str):
     res = requests.post(endpoint, json={
         "model": "togethercomputer/llama-2-70b-chat",
         "max_tokens": 512,
-        "prompt": "Give a simple 1-2 sentence description of \"" + skill + ".\"",
+        "prompt": "Give a 1 sentence description of \"" + skill + ".\"",
         "request_type": "language-model-inference",
         "temperature": 0.15,
         "top_p": 0.7,
