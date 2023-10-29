@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { createRef, useEffect, useRef } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import './Hotbar.css';
 import TreeCard from '../components/TreeCard';
 
-function Hotbar({ category, refz }) {
+function Hotbar({category, refz}) {
+
+
+    const refe = createRef();
 
     const [treeCard, setTreeCard] = useState([])
     useEffect(() => {
@@ -17,11 +20,72 @@ function Hotbar({ category, refz }) {
             })
     }, [])
 
+    const zCard = [
+        {
+            title:"z",
+            author: "goombus",
+            upvotes: "6",
+            downvotes: "9",
+            treeImageURL: "",
+        },
+        {
+            title:"z",
+            author: "goombus",
+            upvotes: "6",
+            downvotes: "9",
+            treeImageURL: "",
+        },
+        {
+            title:"z",
+            author: "goombus",
+            upvotes: "6",
+            downvotes: "9",
+            treeImageURL: "",
+        },
+        {
+            title:"z",
+            author: "goombus",
+            upvotes: "6",
+            downvotes: "9",
+            treeImageURL: "",
+        },
+        {
+            title:"z",
+            author: "goombus",
+            upvotes: "6",
+            downvotes: "9",
+            treeImageURL: "",
+        },
+        {
+            title:"z",
+            author: "goombus",
+            upvotes: "6",
+            downvotes: "9",
+            treeImageURL: "",
+        },
+        {
+            title:"z",
+            author: "goombus",
+            upvotes: "6",
+            downvotes: "9",
+            treeImageURL: "",
+        },
+    ]
+
+
+    const scroll = (scrollOffset) => {
+        refe.current.scrollLeft += scrollOffset;
+    };
+
     return (
         <div className="hotbar" ref={refz}>
             <h4 style={{ marginLeft: '60px' }}>{category}</h4>
-            <div className='treecube'>
-                {treeCard.map((e) => <TreeCard title={e.title} author={e.author} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
+            <div className='arrowwrap'>
+                <button class="leftb" onClick={() => scroll(300)}>{">"}</button>
+                <div className='treecube' ref={refe}>
+                    {zCard.map((e) => <TreeCard title={e.title} author={e.author} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
+                </div>
+                <button class="rightb" onClick={() => scroll(-300)}>{"<"}</button>
             </div>
         </div>
     );

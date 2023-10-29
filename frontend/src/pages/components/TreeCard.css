@@ -5,7 +5,6 @@
     flex-direction: row;
     padding: 20px;
     border-radius: 15px;
-    background-color: #eeeeee;
     margin: auto;
 }
 
@@ -48,6 +47,7 @@
 }
 
 .grow:hover { 
-    transform: scale(1.02);
-    box-shadow: 0 0 0 1px;
+    transform: scale(1.04);
+    box-shadow: 0 0 0 0px;
+    background-color: #d9ff2e;
 }

@@ -1,20 +1,23 @@
 /* Sidebar.css */
 
 .sidebar {
-    width: 14%;
+    width: 13%;
     height: 100%;
-    background-color: #eeeeee;
+    background-color: #74b800;
     color: #fff;
     top: 20;
     left: 0;
-    padding: 30px;
+    padding: 40px;
     position: fixed;
     display: flex;
-    color: #313131;
     font-weight: 800;
-    font-size: 22px;
+    font-size: 24px;
   }
-  
+
+  li:hover { 
+    transform: scale(1.1);
+  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -23,11 +26,12 @@
   li {
     margin-bottom: 10px;
     position: relative;
+    transition: all .1s ease-in-out; 
   }
   
   li:hover {
     cursor: pointer;
-    text-decoration: underline;
+    color: #d9ff2e;
   }
   .simg {
     position: absolute;
