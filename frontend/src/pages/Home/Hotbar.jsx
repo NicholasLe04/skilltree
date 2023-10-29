@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 import './Hotbar.css';
 import TreeCard from '../components/TreeCard';
 
