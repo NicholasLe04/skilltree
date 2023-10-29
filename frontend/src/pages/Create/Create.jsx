@@ -116,32 +116,12 @@ function Create() {
     }
 
     const saveTree = () => {
-        // let nodes = skills
-
-        // for (let i = 0; i < nodes.length; i++) {
-        //     if (typeof(nodes[i].description) === 'string' && nodes[i].description.includes("'")){
-        //         nodes[i].description = nodes[i].description.replace("'", "");
-        //     }
-        // }
-        
         skills.map((skill) => {
             if (typeof(skill.description) === 'string' && skill.description.includes("'")) {
                 skill.description = skill.description.replace("'", "");
             }
         })
 
-        console.log({
-            "username": "oscar",
-            "skill": topic,
-            "description": "",
-            "tags": [
-                'sports', 'tech'
-            ],
-            "tree": {
-                "nodes": skills,
-                "edges": edges
-            }
-        })
         axios.post("http://localhost:6969/tree/", {
             "username": "oscar",
             "skill": topic,
@@ -154,13 +134,12 @@ function Create() {
                 "edges": edges
             }
         })
-            .then((response) => {
-                console.log('Response:', response.data);
-            })
-            .catch((error) => {
-
-                console.error('Error:', error);
-            });
+        .then((response) => {
+            console.log('Response:', response.data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 
     }
 
