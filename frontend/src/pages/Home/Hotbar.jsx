@@ -79,13 +79,13 @@ function Hotbar({category, refz}) {
 
     return (
         <div className="hotbar" ref={refz}>
-            <h4 style={{ marginLeft: '60px' }}>{category}</h4>
+            <h4 className="header" style={{ marginLeft: '60px' }}>{category}</h4>
             <div className='arrowwrap'>
-                <button class="leftb" onClick={() => scroll(300)}>{">"}</button>
+                <button class="leftb" onClick={() => scroll(255)}>{">"}</button>
                 <div className='treecube' ref={refe}>
                     {zCard.map((e) => <TreeCard title={e.title} author={e.author} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
                 </div>
-                <button class="rightb" onClick={() => scroll(-300)}>{"<"}</button>
+                <button class="rightb" onClick={() => scroll(-255)}>{"<"}</button>
             </div>
         </div>
     );

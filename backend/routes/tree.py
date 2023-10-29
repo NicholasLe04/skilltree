@@ -125,7 +125,7 @@ def _generate_root_skill(skill:str):
         'shape': 'circle'
     })
 
-def _generate_subskills(skill:str, subskill:str, skill_id:int, next_id:int) -> tuple[list[dict], list[dict]]:
+def _generate_subskills(skill:str, subskill:str, skill_id:int, next_id:int) -> 'tuple[list[dict], list[dict]]':
     endpoint = 'https://api.together.xyz/inference'
     res = requests.post(endpoint, json={
         "model": "togethercomputer/llama-2-70b-chat",
