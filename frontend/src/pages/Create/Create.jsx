@@ -116,14 +116,19 @@ function Create() {
     }
 
     const saveTree = () => {
-        let nodes = skills
-        console.log(nodes)
+        // let nodes = skills
 
-        for (let i = 0; i < nodes.length; i++) {
-            nodes[i].description = nodes[i].description.replace("'", "")
-        }
-
-        console.log(nodes)
+        // for (let i = 0; i < nodes.length; i++) {
+        //     if (typeof(nodes[i].description) === 'string' && nodes[i].description.includes("'")){
+        //         nodes[i].description = nodes[i].description.replace("'", "");
+        //     }
+        // }
+        
+        skills.map((skill) => {
+            if (typeof(skill.description) === 'string' && skill.description.includes("'")) {
+                skill.description = skill.description.replace("'", "");
+            }
+        })
 
         console.log({
             "username": "oscar",
@@ -133,7 +138,7 @@ function Create() {
                 'sports', 'tech'
             ],
             "tree": {
-                "nodes": nodes,
+                "nodes": skills,
                 "edges": edges
             }
         })
@@ -145,7 +150,7 @@ function Create() {
                 'sports', 'tech'
             ],
             "tree": {
-                "nodes": nodes,
+                "nodes": skills,
                 "edges": edges
             }
         })
