@@ -10,13 +10,26 @@ import Graph from "react-graph-vis";
 
 
 const options = {
-  layout: {
-    hierarchical: true
-  },
-  edges: {
-    color: "#000000"
-  },
+    layout: {
+        hierarchical: false
+    },
+    nodes: {
+        borderWidth: 0
+    },
+    edges: {
+        color: "#141414",
+        width: 3
+    },
+    "physics": {
+        "enabled": true,
+        "barnesHut": {
+          "gravitationalConstant": -10000,
+          "centralGravity": 0.5,
+          "springLength": 100
+        },
+    }
 };
+
 
 
 

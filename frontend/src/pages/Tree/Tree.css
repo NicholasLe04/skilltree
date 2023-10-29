@@ -18,7 +18,16 @@
 }
 
 .bottom-container {
+    display: flex;
     height: 100px;
     background-color: #333;
     color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+
+.bottom-container button {
+    height: 50%;
+    border-radius: 10px;
 }

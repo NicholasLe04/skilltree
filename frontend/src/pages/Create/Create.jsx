@@ -1,17 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import './Create.css';
 import React from 'react';
 import 'reactflow/dist/style.css';
 import Graph from "react-graph-vis";
-
+import axios from 'axios';
+import DimmedOverlay from '../components/DimmedOverlay';
+import loadingGIF from "../../assets/images/loading.gif";
 
 const options = {
     layout: {
         hierarchical: false
     },
+    nodes: {
+        borderWidth: 0
+    },
     edges: {
-        color: "#000000"
+        color: "#141414",
+        width: 3
+    },
+    "physics": {
+        "enabled": true,
+        "barnesHut": {
+          "gravitationalConstant": -10000,
+          "centralGravity": 0.5,
+          "springLength": 100
+        },
     }
 };
 
@@ -26,10 +40,12 @@ function Create() {
             id: counter,
             label: 'New Skill',
             color: '#c9c9c9',
-            x: Math.floor(Math.random() * 500) - 250,
-            y: Math.floor(Math.random() * 400) - 200,
+            x: Math.floor(Math.random() * 50) - 25,
+            y: Math.floor(Math.random() * 50) - 25,
             heightConstraint: 100,
-            physics: true,
+            widthConstraint: {
+                maximum: 100
+            },
             shape: 'circle'
         }]);
 
@@ -61,11 +77,19 @@ function Create() {
         });
     }
 
+    const handleDescriptionChange = (e) => {
+        let tempNode = skills.find(node => node.id === selectedNode.id);
+        tempNode.description = e.target.value;
+        setSkills((prev, props) => {
+            return [...prev.filter(node => node.id !== selectedNode.id), tempNode]
+        });
+    }
+
     const [counter, setCounter] = useState(1);
     const [skills, setSkills] = useState([]);
     const [edges, setEdges] = useState([]);
-    const [trigger, setTrigger] = useState(true);
-
+    const [topic, setTopic] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const events = {
         select: ({ nodes }) => {
@@ -73,11 +97,65 @@ function Create() {
         }
     };
 
+    const generateAITree = (skill) => {
+        setLoading(true);
+        axios.get("http://localhost:6969/tree/ai/" + (skill), {
+            headers: {
+            Accept: 'application/json'
+            }
+        })
+        .then(response => {
+            setSkills(response.data.nodes);
+            setEdges(response.data.edges);
+            setCounter(response.data.nodes.length+1)
+            setLoading(false);
+        })
+        .catch(error => {
+            console.log(error)
+        });    
+    }
+
+    const saveTree = () => {
+        console.log('saving that')
+        axios.post("http://localhost:6969/tree/", {
+            "username": "oscar",
+            "skill": topic,
+            "description": "",
+            "tags": [
+              "sports", "tech"
+            ],
+            "tree": {
+              "nodes": skills,
+              "edges": edges
+            }
+          })
+        .then((response) => {
+          console.log('Response:', response.data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      
+    }
 
     const [selectedNode, setSelectedNode] = useState();
 
     return (
         <>
+            {
+                loading && 
+                <>
+                    <DimmedOverlay/>
+                    <img src={loadingGIF} style={{
+                        position: 'fixed',
+                        zIndex: '999999',
+                        height: '30vh',
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%, -50%)'
+                    }}/>
+                </>
+            }
             <Navbar />
             <div className='main-content' style={{ display: 'flex', flexDirection: 'column' }}>
                 <div className='main-content' style={{ display: 'flex' }}>
@@ -99,7 +177,7 @@ function Create() {
                             <>
                                 <input type='text' className='skill-title-editor' placeholder={selectedNode.label} onChange={(e) => { handleTitleChange(e) }} />
                                 <h3>Description</h3>
-                                <textarea type='text' className='description-editor' defaultValue={selectedNode.description} />
+                                <textarea type='text' className='description-editor' placeholder={selectedNode.description} onChange={(e) => { handleDescriptionChange(e) }}/>
                                 <h3>Connects to</h3>
                                 <div>
                                     {
@@ -127,7 +205,9 @@ function Create() {
                     </div>
                 </div>
                 <div className='bottom-container'>
-                    <button>POST</button>
+                    <button onClick={() => {generateAITree(topic)}}>MAGIC WAND</button>
+                    <input type="text" className="topic-editor" placeholder="topic" onChange={(e) => setTopic(e.target.value)} />
+                    <button onClick={() => {saveTree()}}>POST</button>
                 </div>
             </div>
         </>
