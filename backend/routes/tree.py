@@ -11,8 +11,8 @@ router = APIRouter(
 )
 
 
-@router.get("/{skilltree_id}")
-def get_tree(skilltree_id):
+@router.get("/id/{skilltree_id}")
+def get_tree_id(skilltree_id):
     try:
         tree = Actions.get_tree_by_id(skilltree_id)
         return tree
@@ -25,6 +25,22 @@ def create_tree(treeObj: CreateTreeRequest):
     try:
         Actions.create_tree(treeObj)
         return treeObj
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@router.put("/upvote/{skilltree_id}")
+def upvote_tree(skilltree_id):
+    try:
+        Actions.upvote_tree(skilltree_id)
+        return skilltree_id
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@router.put("/downvote/{skilltree_id}")
+def upvote_tree(skilltree_id):
+    try:
+        Actions.downvote_tree(skilltree_id)
+        return skilltree_id
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -51,7 +67,25 @@ def generate_ai_tree(skill):
         "nodes": [root_skill] + subskills1 + subskills2 + subskills3 + subskills4, 
         "edges": subskill1_edges + subskill2_edges + subskill3_edges + subskill4_edges
     })
-
+  
+@router.get("/skill/{skill}")
+def get_tree_skill(skill):
+    try:
+        tree = Actions.get_tree_by_skill(skill)
+        return tree
+    except Exception as e:
+        return HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/user/{username}")
+def get_tree_user(username):
+    try:
+        tree = Actions.get_tree_by_username(username)
+        return tree
+    except Exception as e:
+        return HTTPException(status_code=500, detail=str(e))
+    
+    
+    
 
 def _generate_root_skill(skill:str):
     endpoint = 'https://api.together.xyz/inference'
