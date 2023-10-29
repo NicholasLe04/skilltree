@@ -10,9 +10,11 @@ class CreateTreeRequest(BaseModel):
 
 
 class GetTreeResponse(BaseModel):
-    skilltree_id: int
+    skilltree_id: str
     username: str
     skill: str
     description: str
     tags: list[str]
+    upvotes: int
+    downvotes: int
     tree: dict

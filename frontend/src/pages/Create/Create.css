@@ -1,0 +1,27 @@
+.content {
+    background-color: #f0f0f0;
+    height: calc(100vh - 180px);
+    flex: 1; /* Takes up remaining space */
+    overflow-y: auto; /* Add scrollbar if needed */
+    display: flex;
+}
+
+.skill-title-editor {
+    color: white;
+    font-size: 25px;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid gray;
+}
+
+.skill-title-editor:focus {
+    outline: none;
+    border-bottom: 2px solid white;
+}
+
+.description-editor {
+    width: 90%;
+    height: 200px;
+    border: 0;
+    background-color: lightgray;
+}

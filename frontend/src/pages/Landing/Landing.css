@@ -1,0 +1,30 @@
+.landing{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-image: l;
+}
+.logo{
+    flex-shrink: 1;
+    margin: 0 0 0 -250px;
+    transition: margin 1s;
+}
+.logo.logo-has-loaded{
+    margin-left:0;
+}
+.welcome{
+    height: 50vh;
+    width: 100vh;
+    border-radius: 5px;
+    margin: 5%;
+    box-shadow: rgba(46, 240, 149, 0.4) 5px 5px, rgba(46, 240, 162, 0.3) 10px 10px, rgba(1, 189, 101, 0.2) 15px 15px, rgba(1, 133, 65, 0.1) 20px 20px;
+    background-color: #eeeeee;
+    padding-left: 10px;
+}
+.wel{
+    margin-top: 30%;
+    margin-left: 15%;
+}
+.gstart{
+    margin-left: 20%;
+}

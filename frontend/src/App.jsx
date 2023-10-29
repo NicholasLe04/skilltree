@@ -3,6 +3,7 @@ import Home from './pages/Home/Home';
 import Tree from './pages/Tree/Tree';
 import Landing from './pages/Landing/Landing';
 import Profile from './pages/Profile/Profile';
+import Create from './pages/Create/Create';
 import Login from './pages/Login/Login';
 import Search from './pages/Search/Search';
 import './App.css';
@@ -16,7 +17,7 @@ function Root() {
                     <Route path="/" exact element={<Landing />} />
                     <Route path="/home" element={<Home />} />
                     <Route path='/profile/:username' element={<Profile />} />
-                    {/* <Route path="/create" element={<Create />} /> */}
+                    <Route path="/create" element={<Create />} />
                     <Route path="/tree/:treeID" element={<Tree />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/search" element={<Search />} />
