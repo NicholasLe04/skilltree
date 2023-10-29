@@ -55,6 +55,7 @@ function Tree() {
                 setDownvotes(response.data.downvotes);
                 setTreeData(response.data);
                 setLoaded(true);
+                console.log(skills);
             })
             .catch(error => {
                 console.log(error)

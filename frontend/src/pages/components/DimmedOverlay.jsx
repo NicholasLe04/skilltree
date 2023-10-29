@@ -4,7 +4,7 @@ function DimmedOverlay() {
   return (
     <div style={{
         background: "rgba(255,255,255,0.8)", 
-        zIndex: "999", 
+        zIndex: "99999999", 
         position: "fixed", 
         top: "0", 
         left: "0",

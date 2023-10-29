@@ -22,9 +22,9 @@ const options = {
     "physics": {
         "enabled": true,
         "barnesHut": {
-          "gravitationalConstant": -10000,
-          "centralGravity": 0.5,
-          "springLength": 100
+            "gravitationalConstant": -10000,
+            "centralGravity": 0.5,
+            "springLength": 100
         },
     }
 };
@@ -34,7 +34,7 @@ const options = {
 function Create() {
 
     const [reload, setReload] = useState(0);
-  
+
     const createNode = () => {
         setSkills([...skills, {
             id: counter,
@@ -101,41 +101,62 @@ function Create() {
         setLoading(true);
         axios.get("http://localhost:6969/tree/ai/" + (skill), {
             headers: {
-            Accept: 'application/json'
+                Accept: 'application/json'
             }
         })
-        .then(response => {
-            setSkills(response.data.nodes);
-            setEdges(response.data.edges);
-            setCounter(response.data.nodes.length+1)
-            setLoading(false);
-        })
-        .catch(error => {
-            console.log(error)
-        });    
+            .then(response => {
+                setSkills(response.data.nodes);
+                setEdges(response.data.edges);
+                setCounter(response.data.nodes.length + 1)
+                setLoading(false);
+            })
+            .catch(error => {
+                console.log(error)
+            });
     }
 
     const saveTree = () => {
-        console.log('saving that')
+        let nodes = skills
+        console.log(nodes)
+
+        for (let i = 0; i < nodes.length; i++) {
+            nodes[i].description = nodes[i].description.replace("'", "")
+        }
+
+        console.log(nodes)
+
+        console.log({
+            "username": "oscar",
+            "skill": topic,
+            "description": "",
+            "tags": [
+                'sports', 'tech'
+            ],
+            "tree": {
+                "nodes": nodes,
+                "edges": edges
+            }
+        })
         axios.post("http://localhost:6969/tree/", {
             "username": "oscar",
             "skill": topic,
             "description": "",
             "tags": [
-              "sports", "tech"
+                'sports', 'tech'
             ],
             "tree": {
-              "nodes": skills,
-              "edges": edges
+                "nodes": nodes,
+                "edges": edges
             }
-          })
-        .then((response) => {
-          console.log('Response:', response.data);
         })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-      
+            .then((response) => {
+                console.log('Response:', response.data);
+            })
+            .catch((error) => {
+
+                console.error('Error:', error);
+            });
+
     }
 
     const [selectedNode, setSelectedNode] = useState();
@@ -143,17 +164,17 @@ function Create() {
     return (
         <>
             {
-                loading && 
+                loading &&
                 <>
-                    <DimmedOverlay/>
+                    <DimmedOverlay />
                     <img src={loadingGIF} style={{
                         position: 'fixed',
-                        zIndex: '999999',
+                        zIndex: '99999999999',
                         height: '30vh',
                         left: '50%',
                         top: '50%',
                         transform: 'translate(-50%, -50%)'
-                    }}/>
+                    }} />
                 </>
             }
             <Navbar />
@@ -177,7 +198,7 @@ function Create() {
                             <>
                                 <input type='text' className='skill-title-editor' placeholder={selectedNode.label} onChange={(e) => { handleTitleChange(e) }} />
                                 <h3>Description</h3>
-                                <textarea type='text' className='description-editor' placeholder={selectedNode.description} onChange={(e) => { handleDescriptionChange(e) }}/>
+                                <textarea type='text' className='description-editor' placeholder={selectedNode.description} onChange={(e) => { handleDescriptionChange(e) }} />
                                 <h3>Connects to</h3>
                                 <div>
                                     {
