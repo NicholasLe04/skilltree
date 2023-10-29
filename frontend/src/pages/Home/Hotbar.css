@@ -1,37 +1,40 @@
-
 .hotbar {
-    margin-left: 18%;
+    margin-left: 420px;
+    margin-right: 100px;
     flex-direction: column;
     padding: 10px;
     background-color: #ffffff;
-  }
+}
+
 .treecube {
     margin-top: 15px;
     display: flex;
     flex-direction: row;
     gap: 15px;
-    overflow-x:auto;
+    overflow-x: auto;
     scrollbar-width: 0;
     padding-left: 10px;
     scroll-behavior: smooth;
-    -ms-overflow-style: none;  /* IE and Edge */
+    -ms-overflow-style: none;
+    /* IE and Edge */
     scrollbar-width: none;
-  }
+}
 
-.arrowwrap{
+.arrowwrap {
     padding: 0px 40px;
     position: relative;
     flex-direction: row;
 }
 
-.leftb{
+.leftb {
     position: absolute;
     right: 0;
     top: 50%;
     transform: scale(1.04);
     background-color: #ededed;
 }
-.rightb{
+
+.rightb {
     position: absolute;
     left: 0;
     top: 50%;
@@ -48,4 +51,4 @@
 .treecube::-webkit-scrollbar {
     display: none;
 
-  }
+}

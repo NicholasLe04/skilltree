@@ -7,6 +7,7 @@ import Graph from "react-graph-vis";
 import axios from 'axios';
 import DimmedOverlay from '../components/DimmedOverlay';
 import loadingGIF from "../../assets/images/loading.gif";
+import Tag from '../components/Tag';
 import MagicWand from '../../assets/images/magicwand.svg'
 
 const options = {
@@ -49,8 +50,6 @@ function Create() {
             },
             shape: 'circle'
         }]);
-
-
         setCounter(counter + 1)
     }
 
@@ -90,6 +89,7 @@ function Create() {
     const [skills, setSkills] = useState([]);
     const [edges, setEdges] = useState([]);
     const [topic, setTopic] = useState([]);
+    const [tags, setTags] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const events = {
@@ -118,7 +118,7 @@ function Create() {
 
     const saveTree = () => {
         skills.map((skill) => {
-            if (typeof(skill.description) === 'string' && skill.description.includes("'")) {
+            if (typeof (skill.description) === 'string' && skill.description.includes("'")) {
                 skill.description = skill.description.replace("'", "");
             }
         })
@@ -127,21 +127,18 @@ function Create() {
             "username": "oscar",
             "skill": topic,
             "description": "",
-            "tags": [
-                'sports', 'tech'
-            ],
+            "tags": tags,
             "tree": {
                 "nodes": skills,
                 "edges": edges
             }
         })
-        .then((response) => {
-            console.log('Response:', response.data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-
+            .then((response) => {
+                console.log('Response:', response.data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
     const [selectedNode, setSelectedNode] = useState();
@@ -213,7 +210,20 @@ function Create() {
                 <div className='bottom-container'>
                     <button className='magicWand' onClick={() => {generateAITree(topic)}}><img src={MagicWand} width={40} height={35} /></button>
                     <input type="text" className="topic-editor" placeholder="topic" onChange={(e) => setTopic(e.target.value)} />
-                    <button className='createButton' onClick={() => {saveTree()}}>Publish</button>
+                    <div>
+                        <div style={{ display: "flex" }} >
+                            <div style={{ display: "flex", gap: "10px" }}>{tags.map((tag) => <Tag tag={tag} />)}</div>
+                            <form onSubmit={(e) => {
+                                e.preventDefault();
+                                setTags([...tags, e.target.tag.value.toLowerCase()])
+                                e.target.tag.value = "";
+                            }}>
+                                <input id="tag" type="text" placeholder='Add a tag'></input>
+                                <button type="submit">Add</button>
+                            </form>
+                        </div>
+                        <button className='createButton' onClick={() => { saveTree() }}>Publish</button>
+                    </div>
                 </div>
             </div>
         </div>

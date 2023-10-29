@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-import Tag from './Tag';
+import Tag from '../components/Tag';
 import './Tree.css';
 import React from 'react';
 import 'reactflow/dist/style.css';
