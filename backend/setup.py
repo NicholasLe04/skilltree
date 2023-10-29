@@ -15,4 +15,3 @@ def setup():
             VALUES ('oscar', 'coach', 'true', 'epic ball guy');
             '''
         )
-        

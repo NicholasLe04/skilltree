@@ -31,7 +31,7 @@ function Hotbar({ category, refz }) {
             <div className='arrowwrap'>
                 <button className="leftb" onClick={() => scroll(255)}>{">"}</button>
                 <div className='treecube' ref={refe}>
-                    {treeCard.map((e) => <TreeCard title={e.skill} author={e.username} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
+                    {treeCard.map((e) => <TreeCard id={e.skilltree_id} title={e.skill} author={e.username} upvotes={e.upvotes} downvotes={e.downvotes} treeImageURL={e.treeImageURL} />)}
                 </div>
                 <button className="rightb" onClick={() => scroll(-255)}>{"<"}</button>
             </div>

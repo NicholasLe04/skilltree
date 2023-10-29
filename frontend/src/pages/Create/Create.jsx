@@ -210,18 +210,21 @@ function Create() {
                     <button className='createButton' onClick={() => { generateAITree(topic) }}>MAGIC WAND</button>
                     <input type="text" className="topic-editor" placeholder="topic" onChange={(e) => setTopic(e.target.value)} />
                     <div>
-                        <div style={{ display: "flex" }}>{tags.map((tag) => <Tag tag={tag} />)}</div>
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            setTags([...tags, e.target.tag.value.toLowerCase()])
-                        }}>
-                            <input id="tag" type="text" placeholder='Add a tag'></input>
-                            <button type="submit">Add</button>
-                        </form>
+                        <div style={{ display: "flex" }} >
+                            <div style={{ display: "flex", gap: "10px" }}>{tags.map((tag) => <Tag tag={tag} />)}</div>
+                            <form onSubmit={(e) => {
+                                e.preventDefault();
+                                setTags([...tags, e.target.tag.value.toLowerCase()])
+                                e.target.tag.value = "";
+                            }}>
+                                <input id="tag" type="text" placeholder='Add a tag'></input>
+                                <button type="submit">Add</button>
+                            </form>
+                        </div>
                         <button className='createButton' onClick={() => { saveTree() }}>Publish</button>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
