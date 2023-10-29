@@ -2,20 +2,23 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import Tag from './Tag';
 import './Tree.css';
 import React from 'react';
 import 'reactflow/dist/style.css';
+import downArrow from '../../assets/images/arrow_down_white.svg';
+import upArrow from '../../assets/images/arrow_up_white.svg';
 
 import Graph from "react-graph-vis";
 
 
 const options = {
-  layout: {
-    hierarchical: true
-  },
-  edges: {
-    color: "#000000"
-  },
+    layout: {
+        hierarchical: true
+    },
+    edges: {
+        color: "#000000"
+    },
 };
 
 
@@ -25,26 +28,26 @@ function Tree() {
     const { treeID } = useParams();
     const [skills, setNodes] = useState([])
     const [edges, setEdges] = useState([])
-
+    const [treeData, setTreeData] = useState({})
+    const [upvotesLocal, setUpvotes] = useState("")
+    const [downvotesLocal, setDownvotes] = useState("")
 
     useEffect(() => {
-        axios.get("http://localhost:6969/tree/id/" + (treeID), {
-            headers: {
-            Accept: 'application/json'
-            }
-        })
-        .then(response => {
-            setNodes(response.data.tree.nodes);
-            setEdges(response.data.tree.edges);
-            console.log(skills);
-            console.log(edges);
-        })
-        .catch(error => {
-            console.log(error)
-        });    
+        axios.get(`http://localhost:6969/tree/id/${treeID}`)
+            .then(response => {
+                setNodes(response.data.tree.nodes);
+                setEdges(response.data.tree.edges);
+                setUpvotes(response.data.tree.upvotes);
+                setDownvotes(response.data.tree.downvotes);
+                setTreeData(response.data);
+                console.log(treeData)
+            })
+            .catch(error => {
+                console.log(error)
+            });
     }, []);
 
-   
+
     const events = {
         select: ({ nodes }) => {
             setSelectedNode(skills.find(node => node.id == nodes));
@@ -53,27 +56,26 @@ function Tree() {
 
     const [selectedNode, setSelectedNode] = useState();
 
-
     return (
         <>
             <Navbar />
-            <div className='main-content' style={{display:'flex', flexDirection:'column'}}>
-                <div className='main-content' style={{display:'flex'}}>
+            <div className='main-content' style={{ display: 'flex', flexDirection: 'column' }}>
+                <div className='main-content' style={{ display: 'flex' }}>
                     <div className='content'>
 
-                        {skills && edges && <Graph 
+                        {skills && edges && <Graph
                             graph={{
                                 "nodes": skills,
                                 "edges": edges
-                            }} 
-                            options={options} 
+                            }}
+                            options={options}
                             events={events}
                         />}
 
                     </div>
                     <div className='sidebar-container'>
-                        { 
-                            selectedNode && 
+                        {
+                            selectedNode &&
                             <>
                                 <h1>{selectedNode.label}</h1>
                                 <h3>Description</h3>
@@ -82,7 +84,41 @@ function Tree() {
                         }
                     </div>
                 </div>
-                <div className='bottom-container'>bruh</div>
+                <div className='bottom-container'>
+                    <div className='side'>
+                        <div className='tree-title'>{treeData.skill}</div>
+                        <div className='author-pane'>
+                            <div className='author'>by {treeData.username}</div>
+                            <div className='ratings'>
+                                <div className='upvotes'>
+                                    <div>{treeData.upvotes}</div>
+                                    <img src={upArrow} onClick={(e) => {
+                                        e.stopPropagation()
+                                        axios.put(`/tree/upvote/${id}`)
+                                        setDownvotes(upvotesLocal + 1)
+                                    }}
+                                        style={{ display: "block" }
+                                        } />
+                                </div>
+                                <div className='downvotes'>
+                                    <div>{treeData.downvotes}</div>
+                                    <img src={downArrow} onClick={(e) => {
+                                        e.stopPropagation()
+                                        axios.put(`/tree/downvote/${id}`)
+                                        setDownvotes(downvotesLocal + 1)
+                                    }}
+                                        style={{ display: "block" }
+                                        } />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='side'>
+                        <div className='tags'>
+                            {(treeData.tags).map((tag) => <Tag tag={tag} />)}
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import arrowDown from "../../assets/images/arrow_down.svg";
+import arrowUp from "../../assets/images/arrow_up.svg";
 import "./TreeCard.css";
 
 function TreeCard({ id, title, author, upvotes, downvotes, treeImageURL }) {
@@ -18,20 +20,19 @@ function TreeCard({ id, title, author, upvotes, downvotes, treeImageURL }) {
                 <div className="tree-card-author">by: {author}</div>
                 <div className="tree-card-rating">
                     <div className="tree-card-upvotes">
-                        <div div onClick={(e) => {
+                        <img src={arrowUp} onClick={(e) => {
                             e.stopPropagation()
                             axios.put(`/tree/upvote/${id}`)
                             setUpvotes(upvotesLocal + 1)
-                        }}>upvotes</div>
+                        }} />
                         <div>{upvotesLocal}</div>
                     </div>
                     <div className="tree-card-downvotes">
-                        <div onClick={(e) => {
+                        <img src={arrowDown} onClick={(e) => {
                             e.stopPropagation()
                             axios.put(`/tree/downvote/${id}`)
                             setDownvotes(downvotesLocal + 1)
-
-                        }}>downvotes</div>
+                        }} />
                         <div>{downvotesLocal}</div>
                     </div>
                 </div>

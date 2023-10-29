@@ -1,7 +1,7 @@
 import React, {createRef, useEffect} from 'react'
 import Navbar from '../components/Navbar';
 import logo from "../../assets/images/undraw_environment_iaus.png";
-import "./landing.css";
+import "./Landing.css"
 import { Link } from 'react-router-dom';
 
 function Landing() {
@@ -11,7 +11,6 @@ function Landing() {
         const wrapper = wrapperRef.current;
         wrapper.classList.toggle('logo-has-loaded')
     });
-    
 
     return (
         <>
@@ -22,7 +21,7 @@ function Landing() {
                 </div>
                 <div className='welcome'>
                     <div className='wel'><h2>Welcome to skilltree</h2>
-                    <Link className='link' to='/home'><button  className='gstart'>Get Started!</button></Link></div>
+                        <Link className='link' to='/home'><button className='gstart'>Get Started!</button></Link></div>
                 </div>
             </div>
         </>

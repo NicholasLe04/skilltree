@@ -87,6 +87,7 @@ def get_tree_by_id(skilltree_id) -> GetTreeResponse:
         skilltree_id, username, skill, description, tags, upvotes, downvotes, tree = cursor.fetchall()[0]
         return GetTreeResponse(skilltree_id=skilltree_id, username=username, skill=skill, tags=tags, description=description, upvotes=upvotes, downvotes=downvotes, tree=tree)
 
+
 def get_tree_by_skill(skill: str):
     with connection.cursor() as cursor:
         cursor.execute(
