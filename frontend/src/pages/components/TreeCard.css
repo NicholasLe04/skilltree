@@ -6,7 +6,6 @@
     padding: 20px;
     border-radius: 15px;
     background-color: #eeeeee;
-    margin: auto;
 }
 
 .tree-card-desc {
@@ -17,7 +16,6 @@
 
 .tree-card-title {
     font-size: 30px;
-    font-weight: 800;
 }
 
 .tree-card-author {
