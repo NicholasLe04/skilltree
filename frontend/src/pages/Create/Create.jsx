@@ -7,28 +7,30 @@ import Graph from "react-graph-vis";
 
 
 const options = {
-  layout: {
-    hierarchical: false
-  },
-  edges: {
-    color: "#000000"
-  }
+    layout: {
+        hierarchical: false
+    },
+    edges: {
+        color: "#000000"
+    }
 };
 
 
 
 function Create() {
 
+    const [reload, setReload] = useState(0);
+  
     const createNode = () => {
-        setSkills([...skills, { 
-                id: counter, 
-                label: 'New Skill', 
-                color: '#c9c9c9', 
-                x: Math.floor(Math.random() * 500)-250, 
-                y: Math.floor(Math.random() * 400)-200, 
-                heightConstraint: 100,
-                physics: true,
-                shape: 'circle'
+        setSkills([...skills, {
+            id: counter,
+            label: 'New Skill',
+            color: '#c9c9c9',
+            x: Math.floor(Math.random() * 500) - 250,
+            y: Math.floor(Math.random() * 400) - 200,
+            heightConstraint: 100,
+            physics: true,
+            shape: 'circle'
         }]);
 
 
@@ -45,7 +47,7 @@ function Create() {
             setEdges(edges.filter(edge => (edge.from !== selectedNode.id || edge.to !== node.id)))
         }
         else {
-            setEdges([...edges, {from: selectedNode.id, to: node.id}]);
+            setEdges([...edges, { from: selectedNode.id, to: node.id }]);
         }
 
     };
@@ -53,8 +55,10 @@ function Create() {
     const handleTitleChange = (e) => {
         let tempNode = skills.find(node => node.id === selectedNode.id);
         tempNode.label = e.target.value;
-        setSkills([...skills.filter(node => node.id !== selectedNode.id), tempNode]);
-        setTrigger(!trigger);
+        setSkills((prev, props) => {
+            setReload(reload + 1);
+            return [...prev.filter(node => node.id !== selectedNode.id), tempNode]
+        });
     }
 
     const [counter, setCounter] = useState(1);
@@ -62,7 +66,7 @@ function Create() {
     const [edges, setEdges] = useState([]);
     const [trigger, setTrigger] = useState(true);
 
-    
+
     const events = {
         select: ({ nodes }) => {
             setSelectedNode(skills.find(node => node.id == nodes));
@@ -75,25 +79,25 @@ function Create() {
     return (
         <>
             <Navbar />
-            <div className='main-content' style={{display:'flex', flexDirection:'column'}}>
-                <div className='main-content' style={{display:'flex'}}>
+            <div className='main-content' style={{ display: 'flex', flexDirection: 'column' }}>
+                <div className='main-content' style={{ display: 'flex' }}>
                     <div className='content'>
-                            <Graph 
-                                graph={{
-                                    "nodes": skills,
-                                    "edges": edges
-                                }} 
-                                options={options} 
-                                events={events}
-                                trigger={trigger}
-                            />
-                        <button style={{height: '50px', width: '50px', borderRadius: '25px'}} onClick={createNode}>+</button>
+                        <Graph
+                            key={reload}
+                            graph={{
+                                "nodes": skills,
+                                "edges": edges
+                            }}
+                            options={options}
+                            events={events}
+                        />
+                        <button style={{ height: '50px', width: '50px', borderRadius: '25px' }} onClick={createNode}>+</button>
                     </div>
                     <div className='sidebar-container'>
-                        { 
-                            selectedNode && 
+                        {
+                            selectedNode &&
                             <>
-                                <input type='text' className='skill-title-editor' placeholder={selectedNode.label} onChange={(e) => {handleTitleChange(e)}}/>
+                                <input type='text' className='skill-title-editor' placeholder={selectedNode.label} onChange={(e) => { handleTitleChange(e) }} />
                                 <h3>Description</h3>
                                 <textarea type='text' className='description-editor' defaultValue={selectedNode.description} />
                                 <h3>Connects to</h3>
@@ -105,9 +109,9 @@ function Create() {
                                                     <div key={node.id}>
                                                         <label>
                                                             <input
-                                                            type="checkbox"
-                                                            checked={edges.some(edge => edge.from === selectedNode.id && edge.to === node.id)}
-                                                            onChange={(e) => handleCheckboxChange(node, e.target.checked)}
+                                                                type="checkbox"
+                                                                checked={edges.some(edge => edge.from === selectedNode.id && edge.to === node.id)}
+                                                                onChange={(e) => handleCheckboxChange(node, e.target.checked)}
                                                             />
                                                             {node.label}
                                                         </label>
@@ -123,7 +127,7 @@ function Create() {
                     </div>
                 </div>
                 <div className='bottom-container'>
-                        <button>POST</button>
+                    <button>POST</button>
                 </div>
             </div>
         </>

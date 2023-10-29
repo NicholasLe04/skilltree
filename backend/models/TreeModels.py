@@ -15,4 +15,6 @@ class GetTreeResponse(BaseModel):
     skill: str
     description: str
     tags: list[str]
+    upvotes: int
+    downvotes: int
     tree: dict

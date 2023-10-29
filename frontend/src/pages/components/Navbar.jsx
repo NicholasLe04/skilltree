@@ -7,7 +7,7 @@ function Navbar() {
     const navigate = useNavigate()
     return (
         <div className="navbar">
-            <Link className='link' to="/Home"><h1 style={{ margin: "0" }}>skill<span style={{ color: "#2ed142" }}>tree</span></h1></Link>
+            <Link className='link' to="/Home"><h1 style={{ margin: "0" }}>skilltree</h1></Link>
             <div className="navbar-search">
                 <form onSubmit={(e) => {
                     e.preventDefault()
