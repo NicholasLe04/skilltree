@@ -9,16 +9,15 @@
 .sidebar-container {
     padding: 40px;
     background-color: #ededed;
-    font-size: 25px;
+    font-size: 22px;
     color: #141414;
-    flex: 0 0 500px;
+    flex: 0 0 440px;
+    overflow-y: scroll;
+    height: 600px;
     /* Fixed width for the sidebar */
 }
 
 .content {
-    background-color: #ededed;
-    color: #141414;
-    font-family: "articulat-cf";
     height: calc(100vh - 180px);
     flex: 1;
     /* Takes up remaining space */
@@ -30,11 +29,14 @@
     display: flex;
     flex-direction: row;
     height: 111px;
+    width: 100%;
     background-color: #141414;
     color: #fff;
     justify-content: space-between;
     align-items: center;
     padding: 10px 50px;
+    position: absolute;
+    bottom: 0;
 }
 
 .bottom-container button {

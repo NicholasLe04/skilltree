@@ -8,6 +8,7 @@ import axios from 'axios';
 import DimmedOverlay from '../components/DimmedOverlay';
 import loadingGIF from "../../assets/images/loading.gif";
 import Tag from '../components/Tag';
+import MagicWand from '../../assets/images/magicwand.svg'
 
 const options = {
     layout: {
@@ -143,7 +144,7 @@ function Create() {
     const [selectedNode, setSelectedNode] = useState();
 
     return (
-        <>
+        <div style={{ overflowY: 'hidden' }}>
             {
                 loading &&
                 <>
@@ -171,23 +172,23 @@ function Create() {
                             options={options}
                             events={events}
                         />
-                        <button style={{ height: '50px', width: '50px', borderRadius: '25px' }} onClick={createNode}>+</button>
+                        <button className='plusbutton' onClick={createNode}>+</button>
                     </div>
                     <div className='sidebar-container'>
                         {
                             selectedNode &&
                             <>
                                 <input type='text' className='skill-title-editor' placeholder={selectedNode.label} onChange={(e) => { handleTitleChange(e) }} />
-                                <h3>Description</h3>
+                                <h3 className='editor-header'>Description</h3>
                                 <textarea type='text' className='description-editor' placeholder={selectedNode.description} onChange={(e) => { handleDescriptionChange(e) }} />
-                                <h3>Connects to</h3>
+                                <h3 className='editor-header'>Connects to</h3>
                                 <div>
                                     {
                                         skills.map((node) => {
                                             if (node.id != selectedNode.id) {
                                                 return (
-                                                    <div key={node.id}>
-                                                        <label>
+                                                    <div key ={node.id}>
+                                                        <label className="checklist" >
                                                             <input
                                                                 type="checkbox"
                                                                 checked={edges.some(edge => edge.from === selectedNode.id && edge.to === node.id)}
@@ -201,13 +202,13 @@ function Create() {
                                         })
                                     }
                                 </div>
-                                <button onClick={() => deleteNode(selectedNode.id)}>DELETE</button>
+                                <button className="del" onClick={() => deleteNode(selectedNode.id)}>Delete</button>
                             </>
                         }
                     </div>
                 </div>
                 <div className='bottom-container'>
-                    <button className='createButton' onClick={() => { generateAITree(topic) }}>MAGIC WAND</button>
+                    <button className='magicWand' onClick={() => {generateAITree(topic)}}><img src={MagicWand} width={40} height={35} /></button>
                     <input type="text" className="topic-editor" placeholder="topic" onChange={(e) => setTopic(e.target.value)} />
                     <div>
                         <div style={{ display: "flex" }} >
@@ -224,8 +225,8 @@ function Create() {
                         <button className='createButton' onClick={() => { saveTree() }}>Publish</button>
                     </div>
                 </div>
-            </div >
-        </>
+            </div>
+        </div>
     )
 }
 
