@@ -20,7 +20,7 @@ const options = {
 function Create() {
 
     const [reload, setReload] = useState(0);
-
+  
     const createNode = () => {
         setSkills([...skills, {
             id: counter,

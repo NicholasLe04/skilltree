@@ -1,4 +1,5 @@
 import json
+import uuid
 from database.connection import get_connection
 
 from models.UserModels import CreateUserRequest, GetUserResponse
@@ -42,16 +43,13 @@ def create_tree(tree: CreateTreeRequest):
     with connection.cursor() as cursor:
         tags_str = "ARRAY" + str(tree.tags)
         json_str = json.dumps(tree.tree).replace("\'", '\"')
-        print(f'''
-            INSERT INTO skilltree (username, skill, description, tags, tree)
-            VALUES ('{tree.username}', '{tree.skill}', '{tree.description}', {tags_str}, '{json_str}') RETURNING skilltree_id;
-            ''')
         cursor.execute(
             f'''
-            INSERT INTO skilltree (username, skill, description, tags, tree)
-            VALUES ('{tree.username}', '{tree.skill}', '{tree.description}', {tags_str}, '{json_str}') RETURNING skilltree_id;
+            INSERT INTO skilltree (skilltree_id, username, skill, description, tags, tree)
+            VALUES ('{uuid.uuid4()}', '{tree.username}', '{tree.skill}', '{tree.description}', {tags_str}, '{json_str}') RETURNING skilltree_id;
             '''
         )
+
         print(f'Just inserted a skilltree with id = {cursor.fetchone()}')
 
 def upvote_tree(skilltree_id: int):
