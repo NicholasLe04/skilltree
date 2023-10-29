@@ -7,32 +7,92 @@
 }
 
 .skill-title-editor {
-    color: white;
-    font-size: 25px;
-    background: transparent;
-    border: 0;
-    border-bottom: 2px solid gray;
+    color: 141414;
+    width: 90%;
+    font-size: 35px;
+    font-family: "articulat-cf";
+    font-weight: 600;
+    border: 0px;
+    border-bottom: 2px solid 141414;
+    background-color: #fff;
+    border-radius: 14px;
+    padding-left: 10px;
 }
 
 .skill-title-editor:focus {
-    outline: none;
-    border-bottom: 2px solid white;
+    border: 20px;
+    border-color: #d9ff2e;
+    margin-bottom: 0px;
 }
 
 .description-editor {
     width: 90%;
-    height: 200px;
+    height: 100px;
     border: 0;
-    background-color: lightgray;
+    border-radius: 14px;
+    background-color: #fff;
+    font-family: "articulat-cf";
+    font-weight: 400;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.editor-header {
+    padding-bottom: 0px;
+    margin-bottom: 5px;
 }
 
 .topic-editor {
     height: 60%;
     width: 30%;
-    font-size: 20px;
+    font-size: 23px;
     text-align: center;
+    font-family: "articulat-cf";
+    font-weight: 600;
+    border-radius: 60px;
+    padding-bottom: 0px;
 }
 
 .createButton {
     border-radius: 40px;
+    height: 60px;
+    font-size: 50px;
+}
+
+.magicWand {
+    background-color: #a5d800;
+    border-radius: 40px;
+    height: 60px;
+    font-size: 50px;
+}
+
+.del {
+    height: 40px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 800;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-family: "articulat-cf";
+    color:#d82400;
+}
+
+.del:hover {
+    background-color: #d82400;;
+    color: #fff;
+}
+
+.checklist {
+    background-color: 141414;
+    font-size: 18px;
+}
+
+.plusbutton {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    font-size: 25px;
+    background-color: #ededed;
 }

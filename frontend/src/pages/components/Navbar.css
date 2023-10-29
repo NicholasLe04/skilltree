@@ -32,10 +32,12 @@
 
 .navbar-search input[type="text"] {
     font-weight: 400;
+    font-size: 20px;
+    font-family: "articulat-cf";
     width: 500px;
-    height: 25px;
+    height: 30px;
     padding: 5px;
-    padding-left: 12px;
+    padding-left: 16px;
     border: 0px solid #777;
     border-radius: 22px;
     margin-right: 10px;
