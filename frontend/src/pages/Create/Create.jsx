@@ -19,10 +19,6 @@ const options = {
 
 function Create() {
 
-    // useEffect(() => {
-        
-    // }, [skills]);
-
     const createNode = () => {
         setSkills([...skills, { 
                 id: counter, 
