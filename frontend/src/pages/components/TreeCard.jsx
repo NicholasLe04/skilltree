@@ -42,4 +42,5 @@ function TreeCard({ id, title, author, upvotes, downvotes, treeImageURL }) {
     )
 }
 
+
 export default TreeCard;
