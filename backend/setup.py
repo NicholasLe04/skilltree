@@ -12,6 +12,6 @@ def setup():
         cur.execute(
             '''
             INSERT INTO users(username, password, verified, description)
-            VALUES ('oscar', 'coach', 'true', 'epic ball guy');
+            VALUES ('oscar', 'coach', 'true', 'Volleyball coach at San Jose State University, music lover, father of two beautiful children.');
             '''
         )

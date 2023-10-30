@@ -187,7 +187,7 @@ function Create() {
                                         skills.map((node) => {
                                             if (node.id != selectedNode.id) {
                                                 return (
-                                                    <div key ={node.id}>
+                                                    <div key={node.id}>
                                                         <label className="checklist" >
                                                             <input
                                                                 type="checkbox"
@@ -208,21 +208,19 @@ function Create() {
                     </div>
                 </div>
                 <div className='bottom-container'>
-                    <button className='magicWand' onClick={() => {generateAITree(topic)}}><img src={MagicWand} width={40} height={35} /></button>
+                    <button className='magicWand' onClick={() => { generateAITree(topic) }}><img src={MagicWand} width={40} height={35} /></button>
                     <input type="text" className="topic-editor" placeholder="topic" onChange={(e) => setTopic(e.target.value)} />
-                    <div>
-                        <div style={{ display: "flex" }} >
-                            <div style={{ display: "flex", gap: "10px" }}>{tags.map((tag) => <Tag tag={tag} />)}</div>
-                            <form onSubmit={(e) => {
-                                e.preventDefault();
-                                setTags([...tags, e.target.tag.value.toLowerCase()])
-                                e.target.tag.value = "";
-                            }}>
-                                <input id="tag" type="text" placeholder='Add a tag'></input>
-                                <button type="submit">Add</button>
-                            </form>
-                        </div>
-                        <button className='createButton' onClick={() => { saveTree() }}>Publish</button>
+                    <div style={{ display: "flex", gap: "10px", height: "35px" }} >
+                        <div style={{ display: "flex", gap: "10px" }}>{tags.map((tag) => <Tag tag={tag} />)}</div>
+                        <form style={{ display: "flex", gap: "10px" }} onSubmit={(e) => {
+                            e.preventDefault();
+                            setTags([...tags, e.target.tag.value.toLowerCase()])
+                            e.target.tag.value = "";
+                        }}>
+                            <input id="tag" type="text" placeholder='Add a tag' style={{ borderRadius: "100px", height: "90%", paddingLeft: "10px" }}></input>
+                            <button style={{ height: "100%" }} type="submit">Add</button>
+                        </form>
+                        <button className='createButton' style={{ width: "100px", height: "35px", marginLeft: "30px" }} onClick={() => { saveTree() }}>Publish</button>
                     </div>
                 </div>
             </div>

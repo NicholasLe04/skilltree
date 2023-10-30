@@ -2,10 +2,11 @@
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    height: fit-content;
+    height: 100% !important;
     width: fit-content;
     flex: 0, 0, auto;
-    background-color: #eee;
+    background-color: #a5d800;
     color: #000000;
-    border-radius: 8px;
+    border-radius: 15px;
+    font-weight: 400 !important;
 }

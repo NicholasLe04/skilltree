@@ -18,7 +18,7 @@ function Navbar() {
             </form>
             <ul className="navbar-list">
                 <Link className='link' to='/create'><li className="navButton">Create</li></Link>
-                <Link className='link' to="/profile"><li className="navButton">Profile</li></Link>
+                <Link className='link' to="/profile/oscar"><li className="navButton">Profile</li></Link>
             </ul>
         </div>
     );

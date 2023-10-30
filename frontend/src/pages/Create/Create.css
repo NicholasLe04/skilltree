@@ -1,8 +1,10 @@
 .content {
     background-color: #fff;
     height: calc(100vh - 180px);
-    flex: 1; /* Takes up remaining space */
-    overflow-y: auto; /* Add scrollbar if needed */
+    flex: 1;
+    /* Takes up remaining space */
+    overflow-y: auto;
+    /* Add scrollbar if needed */
     display: flex;
 }
 
@@ -57,6 +59,7 @@
     border-radius: 40px;
     height: 60px;
     font-size: 50px;
+    background-color: #a5d800;
 }
 
 .magicWand {
@@ -76,11 +79,12 @@
     padding-left: 25px;
     padding-right: 25px;
     font-family: "articulat-cf";
-    color:#d82400;
+    color: #d82400;
 }
 
 .del:hover {
-    background-color: #d82400;;
+    background-color: #d82400;
+    ;
     color: #fff;
 }
 
